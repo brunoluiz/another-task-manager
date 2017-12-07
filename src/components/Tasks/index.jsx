@@ -28,26 +28,26 @@ class Tasks extends Component {
 
   onCreate(e) {
     if (e.key !== 'Enter') return
-    const value = e.target.value
 
-    const tasks = this.state.tasks
-      .concat({ id: uuid(), value, done: false })
+    const tasks = [...this.state.tasks, {
+      id: uuid(),
+      value: e.target.value,
+      done: false
+    }]
 
     this.setState({ tasks })
   }
 
   onDelete(e, id) {
-    const index = this.getTaskIndex(id)
-    if (index === -1) return
-
     const tasks = this.state.tasks
-    tasks.splice(index,1)
+      .filter(task => task.id !== id)
 
     this.setState({ tasks })
   }
 
   onToogle(e) {
     const index = this.getTaskIndex(e.target.value)
+    if (index < 0) return
 
     const tasks = this.state.tasks
     tasks[index].done = !tasks[index].done
@@ -57,6 +57,7 @@ class Tasks extends Component {
 
   onUpdate(e, task) {
     const index = this.getTaskIndex(task.id)
+    if (index < 0) return
 
     const tasks = this.state.tasks
     tasks[index].value = e.target.value
