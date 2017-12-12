@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import uuid from 'uuid/v4'
 
-import TaskList from './TaskList'
+import TaskList from '../../components/Tasks/TaskList'
 
 class Tasks extends Component {
   constructor(props) {

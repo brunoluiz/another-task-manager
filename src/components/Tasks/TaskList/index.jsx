@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TaskCreate from './TaskCreate'
-import TaskItem from './TaskItem'
+import TaskCreate from '../TaskCreate'
+import TaskItem from '../TaskItem'
 
 export default (props) => {
   const items = props.tasks.map(task => (
