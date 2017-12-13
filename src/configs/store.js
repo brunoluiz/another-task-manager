@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from 'redux'
-import tasks from '../containers/Tasks/reducer'
+import { reducer as tasks } from '../containers/Tasks'
 
 const rootReducer = combineReducers({
   tasks
