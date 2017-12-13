@@ -1,18 +1,18 @@
 import React from 'react';
 
 export default (props) => (<li>
-  <input 
+  <input
     checked={props.done}
     onChange={props.onToogle}
-    type="checkbox" 
+    type="checkbox"
     value={props.id}
   />
   <input
-    onChange={(e) => props.onUpdate(e, props)}
+    onChange={(e) => props.onUpdate(e, props.id)}
     type="text"
     value={props.value}
   />
   <button
-    onClick={(e) => props.onDelete(e, props.id)}
+    onClick={() => props.onDelete(props.id)}
   >Delete</button>
 </li>)
