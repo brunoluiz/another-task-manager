@@ -1,3 +1,4 @@
+import * as checklistsType from '../Checklists/constants'
 import * as type from './constants'
 import {fromJS} from 'immutable';
 import uuid from 'uuid/v4'
@@ -47,7 +48,6 @@ export default (state = initial, action) => {
         )
       })
 
-
     case type.TASK_TOOGLE:
       return state.updateIn(['tasks', active], (tasks) => {
         const id = action.data
@@ -58,6 +58,12 @@ export default (state = initial, action) => {
           return task.set('done', !done)
         })
       })
+
+    case checklistsType.CHECKLIST_CREATE:
+      return state.updateIn(['tasks'], (tasks) => {
+        return tasks.set(action.id, [])
+      })
+
     default:
       return state
   }

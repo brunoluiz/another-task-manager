@@ -1,6 +1,5 @@
 import * as type from './constants'
 import {fromJS} from 'immutable';
-import uuid from 'uuid/v4'
 
 const initial = fromJS({
   active: 'x',
@@ -13,10 +12,12 @@ export default (state = initial, action) => {
   switch(action.type) {
     case type.CHECKLIST_CREATE:
       return state.updateIn(['lists'], (lists) => {
-        const id = uuid();
-        const list = fromJS({ id, name: action.data })
+        const list = fromJS({
+          id: action.id,
+          name: action.data
+        })
 
-        return lists.set(id, list)
+        return lists.set(action.id, list)
       })
 
     case type.CHECKLIST_DELETE:
