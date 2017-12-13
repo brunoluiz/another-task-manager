@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 import TaskList from '../../components/Tasks/TaskList'
 import * as tasks from './actions'
 
-const mapStateToProps = (state) => ({
-  tasks: state.tasks.toJS()
-})
+const mapStateToProps = (state) => {
+  const { activeTaskList, tasks } = state.tasks.toJS()
+
+  return {
+    tasks: tasks[activeTaskList]
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   onCreate: (e) => {

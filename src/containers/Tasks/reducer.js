@@ -2,42 +2,62 @@ import * as type from './constants'
 import {fromJS} from 'immutable';
 import uuid from 'uuid/v4'
 
-const initial = fromJS([
-  { id: uuid(), value: 'test', done: false },
-  { id: uuid(), value: 'hello world', done: true }
-])
+const initial = fromJS({
+  activeTaskList: 'x',
+  tasks: {
+    x: [
+      { id: uuid(), value: 'test', done: false },
+      { id: uuid(), value: 'hello world', done: true }
+    ]
+  }
+})
 
 const getIndex = (tasks, id) =>
   tasks.findIndex((task) => task.get('id') === id)
 
 export default (state = initial, action) => {
+  const active = state.get('activeTaskList')
+
   switch(action.type) {
     case type.TASK_CREATE:
-      return state.push(fromJS({
-        id: uuid(),
-        value: action.data,
-        done: false
-      }))
+      return state.updateIn(['tasks', active], (tasks) => {
+        const createdTask = fromJS({
+          id: uuid(),
+          value: action.data,
+          done: false
+        })
+
+        return tasks.push(createdTask)
+      })
 
     case type.TASK_DELETE:
-      return state.delete(getIndex(state, action.data))
+      return state.updateIn(['tasks', active], (tasks) => {
+        const index = getIndex(tasks, action.data)
+
+        return tasks.delete(index)
+      })
 
     case type.TASK_UPDATE:
-      const { value, id } = action.data
+      return state.updateIn(['tasks', active], (tasks) => {
+        const { value, id } = action.data
+        const index = getIndex(tasks, id)
 
-      return state.update(
-        getIndex(state, id),
-        (task) => task.set('value', value)
-      )
+        return tasks.update(index, (task) =>
+          task.set('value', value)
+        )
+      })
+
 
     case type.TASK_TOOGLE:
-      return state.update(
-        getIndex(state, action.data),
-        (task) => {
+      return state.updateIn(['tasks', active], (tasks) => {
+        const id = action.data
+        const index = getIndex(tasks, id)
+
+        return tasks.update(index, (task) => {
           const done = task.get('done')
           return task.set('done', !done)
-        }
-      )
+        })
+      })
     default:
       return state
   }
