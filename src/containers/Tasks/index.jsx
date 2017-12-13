@@ -8,10 +8,15 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreate: (e) => (e.key === 'Enter'
-    ? dispatch(tasks.create(e.target.value))
-    : null
-  ),
+  onCreate: (e) => {
+    if (e.key !== 'Enter') return
+
+    const value = e.target.value
+
+    e.target.value = '' // Reset input field value
+
+    return dispatch(tasks.create(value))
+  },
   onDelete: (id) => dispatch(
     tasks.destroy(id)
   ),
