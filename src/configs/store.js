@@ -1,8 +1,10 @@
 import { combineReducers, createStore } from 'redux'
 import { reducer as tasks } from '../containers/Tasks'
+import { reducer as lists } from '../containers/Checklists'
 
 const rootReducer = combineReducers({
-  tasks
+  tasks,
+  lists
 })
 
 export default createStore(
