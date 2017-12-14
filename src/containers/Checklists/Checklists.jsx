@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import ChecklistList from '../../components/Checklists/ChecklistList'
-import * as tasks from './actions'
+import * as lists from './actions'
 
 const mapStateToProps = (state) => ({
   lists: state.lists.toJS()
@@ -15,13 +15,16 @@ const mapDispatchToProps = (dispatch) => ({
 
     e.target.value = '' // Reset input field value
 
-    return dispatch(tasks.create(value))
+    return dispatch(lists.create(value))
   },
   onDelete: (id) => dispatch(
-    tasks.destroy(id)
+    lists.destroy(id)
   ),
   onUpdate: (e, id) => dispatch(
-    tasks.update({ id, value: e.target.value })
+    lists.update({ id, value: e.target.value })
+  ),
+  onListChange: (e, id) => dispatch(
+    lists.changeActive(id)
   )
 })
 

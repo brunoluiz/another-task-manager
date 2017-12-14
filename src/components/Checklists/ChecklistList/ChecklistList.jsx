@@ -10,6 +10,7 @@ export default (props) => {
     <ChecklistItem
       onDelete={props.onDelete}
       onUpdate={props.onUpdate}
+      onListChange={props.onListChange}
       key={k}
       {...lists[k]}
     />

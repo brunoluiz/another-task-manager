@@ -22,3 +22,10 @@ export const update = data => {
     data
   }
 }
+
+export const changeActive = data => {
+  return {
+    type: type.CHECKLIST_CHANGE,
+    data
+  }
+}

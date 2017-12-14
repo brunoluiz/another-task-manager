@@ -4,10 +4,10 @@ import TaskList from '../../components/Tasks/TaskList'
 import * as tasks from './actions'
 
 const mapStateToProps = (state) => {
-  const { activeTaskList, tasks } = state.tasks.toJS()
+  const { active, tasks } = state.tasks.toJS()
 
   return {
-    tasks: tasks[activeTaskList]
+    tasks: tasks[active]
   }
 }
 

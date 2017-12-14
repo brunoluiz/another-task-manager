@@ -4,7 +4,7 @@ import {fromJS} from 'immutable';
 import uuid from 'uuid/v4'
 
 const initial = fromJS({
-  activeTaskList: 'x',
+  active: 'x',
   tasks: {
     x: [
       { id: uuid(), value: 'test', done: false },
@@ -17,7 +17,7 @@ const getIndex = (tasks, id) =>
   tasks.findIndex((task) => task.get('id') === id)
 
 export default (state = initial, action) => {
-  const active = state.get('activeTaskList')
+  const active = state.get('active')
 
   switch(action.type) {
     case type.TASK_CREATE:
@@ -58,6 +58,9 @@ export default (state = initial, action) => {
           return task.set('done', !done)
         })
       })
+
+    case checklistsType.CHECKLIST_CHANGE:
+      return state.set('active', action.data)
 
     case checklistsType.CHECKLIST_CREATE:
       return state.updateIn(['tasks'], (tasks) => {
