@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
   ),
   onListChange: (e, id) => dispatch(
     lists.changeActive(id)
+  ),
+  onUpdatable: (id) => dispatch(
+    lists.updatable(id)
   )
 })
 

@@ -1,9 +1,7 @@
 import React from 'react';
 
 const buildText = (props) => {
-  let item
-
-  if (props.isEditing) {
+  if (props.lists.updatable === props.id) {
     return <input
       onChange={(e) => props.onUpdate(e, props.id)}
       type="text"
@@ -19,10 +17,25 @@ const buildText = (props) => {
   </a>
 }
 
+const buildEditButton = (props) => {
+  if (props.lists.updatable === props.id) {
+    return <button
+      onClick={() => props.onUpdatable(null)}
+    >Save</button>
+  }
+
+  return <button
+    onClick={() => props.onUpdatable(props.id)}
+  >Edit</button>
+}
+
 export default (props) => {
   const text = buildText(props)
+  const editButton = buildEditButton(props)
+
   return (<li>
     { text }
+    { editButton }
     <button
       onClick={() => props.onDelete(props.id)}
     >Delete</button>

@@ -29,3 +29,10 @@ export const changeActive = data => {
     data
   }
 }
+
+export const updatable = id => {
+  return {
+    type: type.CHECKLIST_UPDATABLE,
+    id
+  }
+}

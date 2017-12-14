@@ -8,11 +8,9 @@ export default (props) => {
 
   const items = Object.keys(lists).map(k => (
     <ChecklistItem
-      onDelete={props.onDelete}
-      onUpdate={props.onUpdate}
-      onListChange={props.onListChange}
       key={k}
       {...lists[k]}
+      {...props}
     />
   )).concat(<ChecklistCreate
     key='bring-me-some-champagne'
