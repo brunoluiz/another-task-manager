@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import TaskList from '../../components/Tasks/TaskList'
-import * as tasks from './actions'
+import TaskList from '../components/Tasks/TaskList'
+import * as tasks from '../modules/tasks'
 
 const mapStateToProps = (state) => {
   const { active, tasks } = state.tasks.toJS()
@@ -19,16 +19,16 @@ const mapDispatchToProps = (dispatch) => ({
 
     e.target.value = '' // Reset input field value
 
-    return dispatch(tasks.create(value))
+    return dispatch(tasks.doCreate(value))
   },
   onDelete: (id) => dispatch(
-    tasks.destroy(id)
+    tasks.doDestroy(id)
   ),
   onUpdate: (e, id) => dispatch(
-    tasks.update({ id, value: e.target.value })
+    tasks.doUpdate({ id, value: e.target.value })
   ),
   onToogle: (e) => dispatch(
-    tasks.toogle(e.target.value)
+    tasks.doToogle(e.target.value)
   )
 })
 
