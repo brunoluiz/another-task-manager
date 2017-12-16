@@ -45,29 +45,27 @@ const initial = fromJS({
 export default (state = initial, action) => {
   switch(action.type) {
     case CHECKLIST_CREATE:
-      return state
-        .updateIn(['byId'], (lists) => {
-          const list = {
-            id: uuid(),
-            name: action.data
-          }
+      const list = {
+        id: uuid(),
+        name: action.data
+      }
 
-          return lists.set(list.id, Map(list))
-        })
+      return state
+        .setIn(['byId', list.id], Map(list))
+        .updateIn(['allIds'], (arr) => arr.push(list.id))
         .set('updatable', null)
 
     case CHECKLIST_DELETE:
       return state
         .deleteIn(['byId', action.id])
+        .updateIn(['allIds'], (arr) => arr.delete(
+          arr.findIndex((id) => id === action.id)
+        ))
         .set('updatable', null)
 
     case CHECKLIST_UPDATE:
       return state
-        .updateIn(['byId'], (list) => {
-          const { value, id } = action.data
-
-          return list.setIn([id, 'name'], value)
-        })
+        .setIn(['byId', action.id, 'name'], action.data.value)
 
     case CHECKLIST_UPDATABLE:
       return state.set('updatable', action.id)
