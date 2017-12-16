@@ -76,26 +76,24 @@ export default (state = initial, action) => {
       })
 
     case CHECKLIST_CHANGE:
+    case CHECKLIST_CREATE:
       return state.set('active', action.data)
 
-    case CHECKLIST_CREATE:
-      return state.setIn(['byId', action.id], {
-        byId: {},
-        allIds: []
-      })
-
     case CHECKLIST_DELETE:
-      // const deletable = state
-      //   .getIn(['byId'], tasks => {
-      //     return tasks.filterNot((task) => task.id === action.id)
-      //   })
-      //   .map((task) => {
-      //     return state
-      //       .getIn(['byId', task.get('id')])
-      //   })
-      //
-      // console.log(newS.toJS())
       return state
+        .get('byId')
+        .reduce((acc, item) => {
+          const task = item.toJS()
+          if (task.listId === action.id) return acc
+
+          return state
+            .setIn(['byId', task.id], Map(task))
+            .updateIn(['allIds'], (arr) => arr.push(task.id))
+        }, fromJS({
+          active: null,
+          byId: {},
+          allIds: []
+        }))
 
     default:
       return state
