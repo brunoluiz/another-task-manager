@@ -31,14 +31,10 @@ const $id = uuid()
 
 const initial = fromJS({
   active: 'x',
-  tasks: {
-    x: {
-      byId: {
-        [$id]: { id: $id, value: 'test', done: false, listId: 'x' }
-      },
-      allIds: [$id]
-    }
-  }
+  byId: {
+    [$id]: { id: $id, value: 'test', done: false, listId: 'x' }
+  },
+  allIds: [$id]
 })
 
 export default (state = initial, action) => {
@@ -46,46 +42,43 @@ export default (state = initial, action) => {
 
   switch(action.type) {
     case TASK_CREATE:
-      return state.updateIn(['tasks', active], (tasks) => {
+      return state.updateIn(['byId'], (tasks) => {
         const task = {
           id: uuid(),
           value: action.data,
-          done: false
+          done: false,
+          listId: active
         }
 
         return tasks
-          .setIn(['byId', task.id], Map(task))
+          .set(task.id, Map(task))
       })
 
     case TASK_DELETE:
-      return state.updateIn(['tasks', active], (tasks) => {
-        return tasks.deleteIn(['byId', action.id])
+      return state.updateIn(['byId'], (tasks) => {
+        return tasks.delete(action.id)
       })
 
     case TASK_UPDATE:
-      return state.updateIn(['tasks', active], (tasks) => {
+      return state.updateIn(['byId'], (tasks) => {
         const { value, id } = action.data
 
-        return tasks.updateIn(['byId', id], (task) =>
-          task.set('value', value)
-        )
+        return tasks.setIn([id, 'value'], value);
       })
 
     case TASK_TOOGLE:
-      return state.updateIn(['tasks', active], (tasks) => {
+      return state.updateIn(['byId'], (tasks) => {
         const id = action.id
+        const done = tasks.getIn([id, 'done'])
 
-        return tasks.updateIn(['byId', id], (task) => {
-          const done = task.get('done')
-          return task.set('done', !done)
-        })
+        return tasks.setIn([id, 'done'], !done);
       })
 
     case CHECKLIST_CHANGE:
       return state.set('active', action.data)
 
     case CHECKLIST_CREATE:
-      return state.updateIn(['tasks'], (tasks) => {
+      return state.updateIn(['byId'], (tasks) => {
         return tasks.set(action.id, {
           byId: {},
           allIds: []

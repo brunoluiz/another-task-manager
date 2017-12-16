@@ -4,10 +4,20 @@ import TaskList from '../components/Tasks/TaskList'
 import * as tasks from '../modules/tasks'
 
 const mapStateToProps = (state) => {
-  const { active, tasks } = state.tasks.toJS()
+  const tasks = state.tasks.toJS()
+
+  // TODO: This seems nasty...
+  const uiActiveTasks = Object.keys(tasks.byId)
+    .filter(id => {
+      return tasks.byId[id].listId === tasks.active
+    })
+    .reduce((acc, id) => {
+      acc[id] = tasks.byId[id]
+      return acc;
+    }, {})
 
   return {
-    tasks: tasks[active].byId
+    tasks: uiActiveTasks
   }
 }
 
