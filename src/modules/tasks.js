@@ -28,7 +28,8 @@ export const doToogle = data => ({
 
 export const doUpdate = data => ({
   type: TASK_UPDATE,
-  data
+  data,
+  id: data.id
 })
 
 const $id = uuid()
@@ -65,8 +66,9 @@ export default (state = initial, action) => {
         ))
 
     case TASK_UPDATE:
+      console.log(action.id, action.data)
       return state
-        .setIn(['byId', action.id, 'value'], action.data)
+        .setIn(['byId', action.id, 'value'], action.data.value)
 
     case TASK_TOOGLE:
       return state.updateIn(['byId', action.id], (tasks) => {
