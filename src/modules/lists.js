@@ -12,7 +12,7 @@ export const doCreate = data => ({
   data
 })
 
-export const doDestroy = data => ({
+export const doDelete = data => ({
   type: CHECKLIST_DELETE,
   id: data
 })

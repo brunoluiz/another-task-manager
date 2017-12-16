@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(tasks.doCreate(value))
   },
   onDelete: (id) => dispatch(
-    tasks.doDestroy(id)
+    tasks.doDelete(id)
   ),
   onUpdate: (e, id) => dispatch(
     tasks.doUpdate({ id, value: e.target.value })

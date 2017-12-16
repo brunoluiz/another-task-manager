@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(lists.doCreate(value))
   },
   onDelete: (id) => dispatch(
-    lists.doDestroy(id)
+    lists.doDelete(id)
   ),
   onUpdate: (e, id) => dispatch(
     lists.doUpdate({ id, value: e.target.value })
