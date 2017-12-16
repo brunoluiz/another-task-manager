@@ -42,47 +42,42 @@ export default (state = initial, action) => {
 
   switch(action.type) {
     case TASK_CREATE:
-      return state.updateIn(['byId'], (tasks) => {
-        const task = {
-          id: uuid(),
-          value: action.data,
-          done: false,
-          listId: active
-        }
+      const task = {
+        id: uuid(),
+        value: action.data,
+        done: false,
+        listId: active
+      }
 
-        return tasks
-          .set(task.id, Map(task))
-      })
+      return state
+        .setIn(['byId', task.id], Map(task))
+        .updateIn(['allIds'], (arr) => arr.push(task.id))
 
     case TASK_DELETE:
-      return state.updateIn(['byId'], (tasks) => {
-        return tasks.delete(action.id)
-      })
+      return state
+        .deleteIn(['byId', action.id])
+        .updateIn(['allIds'], (arr) => arr.delete(
+          arr.findIndex((id) => id === action.id)
+        ))
 
     case TASK_UPDATE:
-      return state.updateIn(['byId'], (tasks) => {
-        const { value, id } = action.data
-
-        return tasks.setIn([id, 'value'], value);
-      })
+      return state
+        .setIn(['byId', action.id, 'value'], action.data)
 
     case TASK_TOOGLE:
-      return state.updateIn(['byId'], (tasks) => {
-        const id = action.id
-        const done = tasks.getIn([id, 'done'])
+      return state.updateIn(['byId', action.id], (tasks) => {
+        const done = tasks.get('done')
 
-        return tasks.setIn([id, 'done'], !done);
+        return tasks.set('done', !done);
       })
 
     case CHECKLIST_CHANGE:
       return state.set('active', action.data)
 
     case CHECKLIST_CREATE:
-      return state.updateIn(['byId'], (tasks) => {
-        return tasks.set(action.id, {
-          byId: {},
-          allIds: []
-        })
+      return state.setIn(['byId', action.id], {
+        byId: {},
+        allIds: []
       })
 
     default:
