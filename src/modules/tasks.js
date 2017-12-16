@@ -1,6 +1,10 @@
 import { Map, fromJS } from 'immutable'
 import uuid from 'uuid/v4'
-import { CHECKLIST_CREATE, CHECKLIST_CHANGE } from './lists'
+import {
+  CHECKLIST_CHANGE,
+  CHECKLIST_CREATE,
+  CHECKLIST_DELETE
+} from './lists'
 
 export const TASK_TOOGLE = 'app/tasks/TASK_TOOGLE'
 export const TASK_CREATE = 'app/tasks/TASK_CREATE'
@@ -79,6 +83,19 @@ export default (state = initial, action) => {
         byId: {},
         allIds: []
       })
+
+    case CHECKLIST_DELETE:
+      // const deletable = state
+      //   .getIn(['byId'], tasks => {
+      //     return tasks.filterNot((task) => task.id === action.id)
+      //   })
+      //   .map((task) => {
+      //     return state
+      //       .getIn(['byId', task.get('id')])
+      //   })
+      //
+      // console.log(newS.toJS())
+      return state
 
     default:
       return state
