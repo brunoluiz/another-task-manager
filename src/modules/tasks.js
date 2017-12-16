@@ -66,7 +66,6 @@ export default (state = initial, action) => {
         ))
 
     case TASK_UPDATE:
-      console.log(action.id, action.data)
       return state
         .setIn(['byId', action.id, 'value'], action.data.value)
 
