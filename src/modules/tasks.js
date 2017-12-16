@@ -1,10 +1,6 @@
-import { fromJS } from 'immutable'
+import { Map, fromJS } from 'immutable'
 import uuid from 'uuid/v4'
-
-import {
-  CHECKLIST_CREATE,
-  CHECKLIST_CHANGE
-} from './lists'
+import { CHECKLIST_CREATE, CHECKLIST_CHANGE } from './lists'
 
 export const TASK_TOOGLE = 'app/tasks/TASK_TOOGLE'
 export const TASK_CREATE = 'app/tasks/TASK_CREATE'
@@ -18,12 +14,12 @@ export const doCreate = data => ({
 
 export const doDestroy = data => ({
   type: TASK_DELETE,
-  data
+  id: data
 })
 
 export const doToogle = data => ({
   type: TASK_TOOGLE,
-  data
+  id: data
 })
 
 export const doUpdate = data => ({
@@ -31,18 +27,19 @@ export const doUpdate = data => ({
   data
 })
 
+const $id = uuid()
+
 const initial = fromJS({
   active: 'x',
   tasks: {
-    x: [
-      { id: uuid(), value: 'test', done: false },
-      { id: uuid(), value: 'hello world', done: true }
-    ]
+    x: {
+      byId: {
+        [$id]: { id: $id, value: 'test', done: false, listId: 'x' }
+      },
+      allIds: [$id]
+    }
   }
 })
-
-const getIndex = (tasks, id) =>
-  tasks.findIndex((task) => task.get('id') === id)
 
 export default (state = initial, action) => {
   const active = state.get('active')
@@ -50,38 +47,35 @@ export default (state = initial, action) => {
   switch(action.type) {
     case TASK_CREATE:
       return state.updateIn(['tasks', active], (tasks) => {
-        const createdTask = fromJS({
+        const task = {
           id: uuid(),
           value: action.data,
           done: false
-        })
+        }
 
-        return tasks.push(createdTask)
+        return tasks
+          .setIn(['byId', task.id], Map(task))
       })
 
     case TASK_DELETE:
       return state.updateIn(['tasks', active], (tasks) => {
-        const index = getIndex(tasks, action.data)
-
-        return tasks.delete(index)
+        return tasks.deleteIn(['byId', action.id])
       })
 
     case TASK_UPDATE:
       return state.updateIn(['tasks', active], (tasks) => {
         const { value, id } = action.data
-        const index = getIndex(tasks, id)
 
-        return tasks.update(index, (task) =>
+        return tasks.updateIn(['byId', id], (task) =>
           task.set('value', value)
         )
       })
 
     case TASK_TOOGLE:
       return state.updateIn(['tasks', active], (tasks) => {
-        const id = action.data
-        const index = getIndex(tasks, id)
+        const id = action.id
 
-        return tasks.update(index, (task) => {
+        return tasks.updateIn(['byId', id], (task) => {
           const done = task.get('done')
           return task.set('done', !done)
         })
@@ -92,7 +86,10 @@ export default (state = initial, action) => {
 
     case CHECKLIST_CREATE:
       return state.updateIn(['tasks'], (tasks) => {
-        return tasks.set(action.id, [])
+        return tasks.set(action.id, {
+          byId: {},
+          allIds: []
+        })
       })
 
     default:

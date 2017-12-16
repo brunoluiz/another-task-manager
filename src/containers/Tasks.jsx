@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
   const { active, tasks } = state.tasks.toJS()
 
   return {
-    tasks: tasks[active]
+    tasks: tasks[active].byId
   }
 }
 

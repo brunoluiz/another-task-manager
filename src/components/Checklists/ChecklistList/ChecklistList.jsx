@@ -4,7 +4,7 @@ import ChecklistCreate from '../ChecklistCreate'
 import ChecklistItem from '../ChecklistItem'
 
 export default (props) => {
-  const { lists } = props.lists
+  const lists = props.lists.byId
 
   const items = Object.keys(lists).map(k => (
     <ChecklistItem

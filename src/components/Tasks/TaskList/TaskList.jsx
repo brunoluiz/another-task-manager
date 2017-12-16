@@ -4,15 +4,15 @@ import TaskCreate from '../TaskCreate'
 import TaskItem from '../TaskItem'
 
 export default (props) => {
-  const items = props.tasks.map(task => (
+  const { tasks } = props
+
+  const items = Object.keys(tasks).map(k => (
     <TaskItem
-      onDelete={props.onDelete}
-      onToogle={props.onToogle}
-      onUpdate={props.onUpdate}
-      key={task.id}
-      {...task} 
+      key={k}
+      {...tasks[k]}
+      {...props}
     />
-  )).concat(<TaskCreate 
+  )).concat(<TaskCreate
     key='bring-me-some-champagne'
     onCreate={props.onCreate}
   />)
