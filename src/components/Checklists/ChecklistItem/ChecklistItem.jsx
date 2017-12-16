@@ -6,6 +6,7 @@ export default (props) => {
   return (<li>
     <EditableInput
       isUpdatable={(props.lists.updatable === props.id)}
+      onKeyPress={(e) => props.onUpdateSave(e)}
       onChange={(e) => props.onUpdate(e, props.id)}
       onSaveClick={() => props.onUpdatable(null)}
       onEditClick={() => props.onUpdatable(props.id)}

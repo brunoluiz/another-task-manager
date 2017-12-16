@@ -3,6 +3,7 @@ import React from 'react';
 const textComponent = (props) => (props.isUpdatable)
    ? <input
       onChange={props.onChange}
+      onKeyPress={props.onKeyPress}
       type="text"
       value={ props.children }
     />

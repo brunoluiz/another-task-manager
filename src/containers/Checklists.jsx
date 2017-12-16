@@ -20,8 +20,12 @@ const mapDispatchToProps = (dispatch) => ({
   onDelete: (id) => dispatch(
     lists.doDelete(id)
   ),
+  onUpdateSave: (e) => {
+    if (e.key === 'Enter')
+      dispatch(lists.doSetUpdatable(null))
+  },
   onUpdate: (e, id) => dispatch(
-    lists.doUpdate({ id, value: e.target.value })
+      lists.doUpdate({ id, value: e.target.value })
   ),
   onListChange: (e, id) => dispatch(
     lists.doChangeActive(id)
