@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 5fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'checklist task';
+}
+
+.checklist {
+  grid-area: checklist;
+}
+
+.task {
+  grid-area: task;
+}

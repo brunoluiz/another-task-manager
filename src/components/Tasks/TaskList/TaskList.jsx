@@ -3,6 +3,8 @@ import React from 'react';
 import TaskCreate from '../TaskCreate'
 import TaskItem from '../TaskItem'
 
+import style from './TaskList.module.css'
+
 export default (props) => {
   const { tasks } = props
 
@@ -17,5 +19,5 @@ export default (props) => {
     onCreate={props.onCreate}
   />)
 
-  return <ul>{items}</ul>
+  return <ul className={props.className}>{items}</ul>
 }

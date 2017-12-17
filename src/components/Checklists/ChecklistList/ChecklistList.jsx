@@ -3,6 +3,8 @@ import React from 'react';
 import ChecklistCreate from '../ChecklistCreate'
 import ChecklistItem from '../ChecklistItem'
 
+import style from './ChecklistList.module.css'
+
 export default (props) => {
   const lists = props.lists.byId
 
@@ -17,5 +19,5 @@ export default (props) => {
     onCreate={props.onCreate}
   />)
 
-  return <ul>{items}</ul>
+  return <ul className={props.className} >{items}</ul>
 }
