@@ -3,7 +3,7 @@ import React from 'react';
 import ChecklistCreate from '../ChecklistCreate'
 import ChecklistItem from '../ChecklistItem'
 
-import style from './ChecklistList.module.css'
+import style from './style.module.css'
 
 export default (props) => {
   const lists = props.lists.byId
@@ -21,3 +21,4 @@ export default (props) => {
 
   return <ul className={props.className} >{items}</ul>
 }
+

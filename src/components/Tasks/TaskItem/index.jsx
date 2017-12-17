@@ -16,3 +16,4 @@ export default (props) => (<li>
     onClick={() => props.onDelete(props.id)}
   >Delete</button>
 </li>)
+

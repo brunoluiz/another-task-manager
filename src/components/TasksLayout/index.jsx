@@ -3,11 +3,11 @@ import React from 'react';
 import ChecklistList from '../../containers/Checklists'
 import Tasks from '../../containers/Tasks'
 
-import styles from './styles.module.css'
+import style from './style.module.css'
 
 export default (props) => (
-  <div className={styles.container}>
-    <ChecklistList className={styles.checklist}/>
-    <Tasks className={styles.task}/>
+  <div className={style.container}>
+    <ChecklistList className={style.checklist}/>
+    <Tasks className={style.task}/>
   </div>
 )
