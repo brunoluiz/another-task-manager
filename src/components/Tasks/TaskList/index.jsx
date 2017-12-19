@@ -19,6 +19,6 @@ export default (props) => {
     onCreate={props.onCreate}
   />)
 
-  return <ul className={props.className}>{items}</ul>
+  return <ul className={`${props.className} ${style.list}`}>{items}</ul>
 }
 

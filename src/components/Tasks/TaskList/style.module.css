@@ -1,3 +1,4 @@
-.task {
-  grid-area: task-container;
+.list {
+  list-style: none;
+  display: block;
 }

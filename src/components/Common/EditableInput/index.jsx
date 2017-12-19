@@ -1,7 +1,13 @@
 import React from 'react';
 
+import Input from '../Input'
+import Button from '../Button'
+import Icon from '../Icon'
+import style from './style.module.css'
+
 const textComponent = (props) => (props.isUpdatable)
-   ? <input
+   ? <Input
+      className={style.input}
       onChange={props.onChange}
       onKeyPress={props.onKeyPress}
       type="text"
@@ -9,16 +15,17 @@ const textComponent = (props) => (props.isUpdatable)
     />
   : <a
       href='#'
+      className={style.link}
       onClick={props.onTextClick}
     >{ props.children }</a>
 
 const buttonComponent = (props) => (props.isUpdatable)
-  ? <button
+  ? <Button
       onClick={props.onSaveClick}
-    >Save</button>
-  : <button
+    ><Icon name='check'/></Button>
+  : <Button
       onClick={props.onEditClick}
-    >Edit</button>
+    ><Icon name='pencil'/></Button>
 
 export default (props) =>
   <span>
