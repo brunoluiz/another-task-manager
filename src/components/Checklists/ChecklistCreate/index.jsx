@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Icon } from 'antd'
 import { Input } from 'antd'
-import { List } from 'antd';
+import { Menu } from 'antd';
 
 export default (props) => (
-  <List.Item>
+  <Menu.Item>
     <Input
       onKeyPress={props.onCreate}
       onChange={props.onChange}
-      placeholder='Add a list'
+      placeholder='Add a Menu'
       prefix={<Icon type='plus' style={{ color: 'rgba(0,0,0,.25)' }} />}
       type="text"
     />
-  </List.Item>
+  </Menu.Item>
 )
