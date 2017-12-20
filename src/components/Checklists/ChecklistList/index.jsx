@@ -3,6 +3,8 @@ import React from 'react';
 import ChecklistCreate from '../ChecklistCreate'
 import ChecklistItem from '../ChecklistItem'
 
+import { List } from 'antd';
+
 import style from './style.module.css'
 
 export default (props) => {
@@ -19,6 +21,10 @@ export default (props) => {
     onCreate={props.onCreate}
   />)
 
-  return <ul className={props.className} >{items}</ul>
+  return <List
+    className={style.list}
+    header={<h3>Lists</h3>}
+    itemLayout='horizontal'
+  >{items}</List>
 }
 

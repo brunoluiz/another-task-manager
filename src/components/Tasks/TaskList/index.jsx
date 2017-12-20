@@ -2,6 +2,7 @@ import React from 'react';
 
 import TaskCreate from '../TaskCreate'
 import TaskItem from '../TaskItem'
+import { List } from 'antd';
 
 import style from './style.module.css'
 
@@ -19,6 +20,10 @@ export default (props) => {
     onCreate={props.onCreate}
   />)
 
-  return <ul className={`${props.className} ${style.list}`}>{items}</ul>
+  return <List
+    className={`${props.className} ${style.list}`}
+    header={<h3>To-do</h3>}
+    itemLayout='horizontal'
+  >{items}</List>
 }
 

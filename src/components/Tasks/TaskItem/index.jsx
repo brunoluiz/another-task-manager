@@ -2,30 +2,37 @@ import React from 'react';
 
 import style from './style.module.css'
 
-import Button from '../../Common/Button'
-import Checkbox from '../../Common/Checkbox'
-import FlexRow from '../../Common/FlexRow'
-import Icon from '../../Common/Icon'
-import Input from '../../Common/Input'
+import { Button } from 'antd'
+import { Checkbox } from 'antd'
+import { Icon } from 'antd'
+import { Input } from 'antd'
+import { List } from 'antd'
+
+const deleteAction = (props) =>
+  <a
+    onClick={() => props.onDelete(props.id)}
+  ><Icon type='delete'/></a>
 
 export default (props) => (
-  <li className={style.item}>
-    <FlexRow>
+  <List.Item
+    actions={[
+      deleteAction(props)
+    ]}
+    className='task-list-item'
+  >
+    <div className={style.centerized} >
       <Checkbox
         checked={props.done}
         onChange={props.onToogle}
         type="checkbox"
+        className={style.checkbox}
         value={props.id}
       />
       <Input
         onChange={(e) => props.onUpdate(e, props.id)}
         value={props.value}
       />
-      <Button
-        className={style.deleteButton}
-        onClick={() => props.onDelete(props.id)}
-      ><Icon name='trash'/></Button>
-    </FlexRow>
-  </li>
+    </div>
+  </List.Item>
 )
 

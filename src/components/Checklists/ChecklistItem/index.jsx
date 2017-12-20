@@ -1,50 +1,51 @@
 import React from 'react';
 
-import style from './style.module.css'
+import { Button } from 'antd'
+import { Icon } from 'antd'
+import { Input } from 'antd'
+import { List } from 'antd'
 
-import Button from '../../Common/Button'
-import FlexRow from '../../Common/FlexRow'
-import Icon from '../../Common/Icon'
-import Input from '../../Common/Input'
+import style from './style.module.css'
 
 const isUpdatable = (props) =>
   (props.lists.updatable === props.id)
 
 const textComponent = (props) => isUpdatable(props)
    ? <Input
+      className={style.full}
       onChange={(e) => props.onUpdate(e, props.id)}
       onKeyPress={(e) => props.onUpdateSave(e)}
-      className={style.text}
       type="text"
       value={ props.name }
     />
   : <a
       href='#'
-      className={style.textLink}
+      className={style.full}
       onClick={(e) => props.onListChange(e, props.id)}
     >{ props.name }</a>
 
 const buttonComponent = (props) => isUpdatable(props)
-  ? <Button
-      borderless
+  ? <a
       onClick={() => props.onUpdatable(null)}
-    ><Icon name='check'/></Button>
-  : <Button
-      borderless
+    ><Icon type='check'/></a>
+  : <a
       onClick={() => props.onUpdatable(props.id)}
-    ><Icon name='pencil'/></Button>
+    ><Icon type='edit'/></a>
 
 export default (props) => {
-  return (<li>
-    <FlexRow>
+  return (
+    <List.Item
+      itemLayout='horizontal'
+      actions={[
+        buttonComponent(props),
+        <a
+          onClick={() => props.onDelete(props.id)}
+        ><Icon type='delete' /></a>
+      ]}
+    >
       { textComponent(props) }
-      { buttonComponent(props) }
-      <Button
-        borderless
-        onClick={() => props.onDelete(props.id)}
-      ><Icon name='trash' /></Button>
-    </FlexRow>
-  </li>)
+    </List.Item>
+  )
 }
 
 
