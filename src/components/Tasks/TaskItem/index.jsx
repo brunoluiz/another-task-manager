@@ -10,9 +10,10 @@ import {
 } from 'antd'
 
 const deleteAction = (props) =>
-  <a
+  <Icon
     onClick={() => props.onDelete(props.id)}
-  ><Icon type='delete'/></a>
+    type='delete'
+  />
 
 export default (props) => (
   <List.Item
