@@ -8,13 +8,13 @@ const mapStateToProps = (state) => {
 
   // TODO: This seems nasty...
   const uiActiveTasks = Object.keys(tasks.byId)
-    .filter(id => {
-      return tasks.byId[id].listId === tasks.active
-    })
     .reduce((acc, id) => {
-      acc[id] = tasks.byId[id]
-      return acc;
-    }, {})
+      if( tasks.byId[id].listId !== tasks.active ) return acc
+
+      const index = tasks.allIds.indexOf(id)
+      acc[index] = tasks.byId[id]
+      return acc
+    }, [])
 
   return {
     tasks: uiActiveTasks

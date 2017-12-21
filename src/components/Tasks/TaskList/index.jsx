@@ -9,10 +9,10 @@ import style from './style.module.css'
 export default (props) => {
   const { tasks } = props
 
-  const items = Object.keys(tasks).map(k => (
+  const items = tasks.map(task => (
     <TaskItem
-      key={k}
-      {...tasks[k]}
+      key={task.id}
+      {...task}
       {...props}
     />
   )).concat(<TaskCreate
