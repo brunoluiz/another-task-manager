@@ -4,15 +4,21 @@ import TaskList from '../components/Tasks/TaskList'
 import * as tasks from '../modules/tasks'
 
 const mapStateToProps = (state) => {
-  const tasks = state.tasks.toJS()
+  const activeTask = state.tasks.get('active')
+  const tasks = state.tasks.get('byId')
+  const taskIds = state.tasks.get('allIds')
 
-  // TODO: This seems nasty...
-  const uiActiveTasks = Object.keys(tasks.byId)
-    .reduce((acc, id) => {
-      if( tasks.byId[id].listId !== tasks.active ) return acc
+  const uiActiveTasks = tasks
+    .reduce((acc, task) => {
+      // Filter tasks which are not on the actual list
+      if( task.get('listId') !== activeTask ) return acc
 
-      const index = tasks.allIds.indexOf(id)
-      acc[index] = tasks.byId[id]
+      // Sort the tasks based on allIds
+      const taskId = task.get('id')
+      const index = taskIds.indexOf(taskId)
+      acc[index] = task.toJS()
+
+      // Maybe a bottleneck will be the toJS()
       return acc
     }, [])
 
