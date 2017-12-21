@@ -8,13 +8,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreate: (e) => {
-    if (e.key !== 'Enter') return
-
-    const value = e.target.value
-
-    e.target.value = '' // Reset input field value
-
+  onCreate: (value) => {
     return dispatch(lists.doCreate(value))
   },
   onDelete: (id) => dispatch(
@@ -27,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdate: (e, id) => dispatch(
       lists.doUpdate({ id, value: e.target.value })
   ),
-  onListChange: (e, id) => dispatch(
+  onListChange: (id) => dispatch(
     lists.doChangeActive(id)
   ),
   onUpdatable: (id) => dispatch(

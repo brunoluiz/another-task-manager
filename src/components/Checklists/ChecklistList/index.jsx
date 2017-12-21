@@ -1,13 +1,14 @@
 import React from 'react';
 
-import ChecklistCreate from '../ChecklistCreate'
-import ChecklistItem from '../ChecklistItem'
 import ChecklistCreateModal from '../ChecklistCreateModal'
 
-import { Menu } from 'antd'
-import { Icon } from 'antd'
-import { Affix, Button } from 'antd'
-import { Modal } from 'antd';
+import {
+  Affix,
+  Button,
+  Icon,
+  Menu,
+  Modal
+} from 'antd'
 
 import style from './style.module.css'
 
@@ -15,28 +16,39 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      color: props.initialColor,
-      createModalVisible: false
-    };
-  }
-
-  showCreateModal = () => {
-    this.setState({
-      createModalVisible: true,
-    });
-  }
-
-  handleOk = (e) => {
-    this.setState({
-      createModalVisible: false,
-    });
+    this.state = { visible: false };
   }
 
   handleCancel = (e) => {
-    this.setState({
-      createModalVisible: false,
-    });
+    this.setState({ visible: false })
+  }
+
+  handleClick = ({ item, key, keyPath }) => {
+    if (key === 'create-list') {
+      return this.showCreateModal()
+    }
+
+    this.props.onListChange(key)
+  }
+
+  handleCreate = (e) => {
+    e.preventDefault()
+
+    this.form.validateFields((err, values) => {
+      if (err) return
+
+      this.form.resetFields()
+      this.setState({ visible: false })
+      this.props.onCreate(values.name)
+    })
+  }
+
+  saveFormRef = (form) => {
+    this.form = form
+  }
+
+  showCreateModal = () => {
+    this.setState({ visible: true })
   }
 
   render() {
@@ -46,10 +58,7 @@ export default class extends React.Component {
       const list = lists[k]
 
       return (
-        <Menu.Item
-          key={lists.id}
-          onClick={(e) => this.props.onListChange(e, list.id)}
-        >
+        <Menu.Item key={list.id}>
           <Icon type='bars' />
           <span>{list.name}</span>
           <Affix
@@ -72,23 +81,17 @@ export default class extends React.Component {
         theme='dark'
         defaultSelectedKeys={['1']}
         mode='inline'
+        onClick={this.handleClick}
       >
         {items}
-        <Menu.Item
-          key='bring-me-some-champagne'
-          onClick={this.showCreateModal}
-        >
-          <a onClick={this.showCreateModal} >
-            <Icon type='plus' />
-            <strong>Create New List</strong>
-          </a>
+        <Menu.Item key='create-list'>
+          <Icon type='plus' />
+          <strong>Create New List</strong>
           <ChecklistCreateModal
-            title='Create New List'
-            visible={this.state.createModalVisible}
-            onOk={this.handleOk}
             onCancel={this.handleCancel}
-            onKeyPress={this.props.onCreate}
-            onChange={this.props.onChange}
+            onOk={this.handleCreate}
+            ref={this.saveFormRef}
+            visible={this.state.visible}
           />
         </Menu.Item>
       </Menu>

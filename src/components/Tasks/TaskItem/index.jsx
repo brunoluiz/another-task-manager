@@ -15,6 +15,7 @@ const deleteAction = (props) =>
 
 export default (props) => (
   <List.Item
+    key={props.id}
     actions={[
       deleteAction(props)
     ]}
