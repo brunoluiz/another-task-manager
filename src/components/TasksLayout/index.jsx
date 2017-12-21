@@ -3,8 +3,8 @@ import React from 'react';
 import ChecklistList from '../../containers/Checklists'
 import Tasks from '../../containers/Tasks'
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout } from 'antd';
+const { Content, Footer, Sider } = Layout;
 
 export default class extends React.Component {
   state = {

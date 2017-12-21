@@ -2,11 +2,12 @@ import React from 'react';
 
 import style from './style.module.css'
 
-import { Button } from 'antd'
-import { Checkbox } from 'antd'
-import { Icon } from 'antd'
-import { Input } from 'antd'
-import { List } from 'antd'
+import {
+  Checkbox,
+  Icon,
+  Input,
+  List
+} from 'antd'
 
 const deleteAction = (props) =>
   <a

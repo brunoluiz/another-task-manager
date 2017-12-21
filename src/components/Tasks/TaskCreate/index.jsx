@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { Icon } from 'antd'
-import { Input } from 'antd'
-import { List } from 'antd';
+import {
+  Icon,
+  Input,
+  List
+} from 'antd'
 
-export default (props) => (<li>
+export default (props) => (
   <List.Item>
     <Input
       onKeyPress={props.onCreate}
@@ -14,4 +16,4 @@ export default (props) => (<li>
       type="text"
     />
   </List.Item>
-</li>)
+)
