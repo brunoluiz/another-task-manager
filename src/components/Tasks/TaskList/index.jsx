@@ -15,15 +15,24 @@ export default (props) => {
       {...task}
       {...props}
     />
-  )).concat(<TaskCreate
-    key='bring-me-some-champagne'
-    onCreate={props.onCreate}
-  />)
+  ))
 
-  return <List
-    className={`${props.className} ${style.list}`}
-    header={<h3>To-do</h3>}
-    itemLayout='horizontal'
-  >{items}</List>
+  const createTask = (
+    <TaskCreate
+      key='create-task'
+      onCreate={props.onCreate}
+    />
+  )
+
+  return (
+    <List
+      className={`${props.className} ${style.list}`}
+      header={<h3>To-do</h3>}
+      itemLayout='horizontal'
+    >
+      {items}
+      {createTask}
+    </List>
+  )
 }
 
