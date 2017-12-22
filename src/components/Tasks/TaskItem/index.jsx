@@ -34,6 +34,7 @@ export default (props) => (
       <Input
         onChange={(e) => props.onUpdate(e, props.id)}
         value={props.value}
+        disabled={props.done}
       />
     </div>
   </List.Item>
