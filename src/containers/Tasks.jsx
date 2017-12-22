@@ -4,14 +4,14 @@ import TaskList from '../components/Tasks/TaskList'
 import * as tasks from '../modules/tasks'
 
 const mapStateToProps = (state) => {
-  const activeTask = state.tasks.get('active')
+  const active = state.tasks.get('active')
   const tasks = state.tasks.get('byId')
   const taskIds = state.tasks.get('allIds')
 
   const uiActiveTasks = tasks
     .reduce((acc, task) => {
       // Filter tasks which are not on the actual list
-      if( task.get('listId') !== activeTask ) return acc
+      if( task.get('listId') !== active ) return acc
 
       // Sort the tasks based on allIds
       const taskId = task.get('id')
