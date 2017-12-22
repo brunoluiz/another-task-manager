@@ -56,12 +56,14 @@ export default class extends React.Component {
           offsetBottom={0}
           style={{ position: 'absolute', top: 0, right: '5px'}}
         >
-          <a onClick={() => this.props.onDelete(id)} >
-            <Icon type='edit' />
-          </a>
-          <a onClick={() => this.props.onDelete(id)} >
-            <Icon type='delete' />
-          </a>
+          <Icon
+            type='edit'
+            onClick={() => this.props.onDelete(id)}
+          />
+          <Icon
+            type='delete'
+            onClick={() => this.props.onDelete(id)}
+          />
         </Affix>
       </Menu.Item>
     )
