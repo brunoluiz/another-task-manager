@@ -45,6 +45,9 @@ export default class extends React.Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
+            <span>
+              Remaining tasks
+            </span>
           </Header>
           <Content className={style.contentLayout} >
             <Tasks className={style.contentLayout}/>
