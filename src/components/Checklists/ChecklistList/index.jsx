@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChecklistCreateModal from '../ChecklistCreateModal'
+import ChecklistModal from '../ChecklistModal'
 import {
   Affix,
   Icon,
@@ -72,7 +72,7 @@ export default class extends React.Component {
       <Menu.Item key='create-list'>
         <Icon type='plus' />
         <strong>Create New List</strong>
-        <ChecklistCreateModal
+        <ChecklistModal
           onCancel={this.handleCancel}
           onOk={this.handleCreate}
           ref={this.saveFormRef}
