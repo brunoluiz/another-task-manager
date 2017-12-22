@@ -27,11 +27,10 @@ export default (props) => {
   return (
     <List
       className={`${props.className} ${style.list}`}
-      header={<h3>To-do</h3>}
       itemLayout='horizontal'
     >
-      {items}
       {createTask}
+      {items}
     </List>
   )
 }

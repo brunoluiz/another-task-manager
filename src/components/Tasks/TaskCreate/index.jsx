@@ -6,14 +6,24 @@ import {
   List
 } from 'antd'
 
+const createAction = (props) =>
+  <Icon
+    type='plus'
+  />
+
 export default (props) => (
-  <List.Item>
+  <List.Item
+    actions={[
+      createAction(props)
+    ]}
+  >
     <Input
-      onKeyPress={props.onCreate}
       onChange={props.onChange}
+      onKeyPress={props.onCreate}
       placeholder='Add a task'
       prefix={<Icon type='plus' style={{ color: 'rgba(0,0,0,.25)' }} />}
-      type="text"
+      size='large'
+      type='text'
     />
   </List.Item>
 )
