@@ -1,42 +1,55 @@
 import React from 'react';
 
 import ChecklistList from '../../containers/Checklists'
+import style from './style.module.css'
 import Tasks from '../../containers/Tasks'
+import {
+  Icon,
+  Layout
+} from 'antd';
 
-import { Layout } from 'antd';
-const { Content, Footer, Sider } = Layout;
+const {
+  Content,
+  Footer,
+  Header,
+  Sider
+} = Layout;
 
 export default class extends React.Component {
-  state = {
-    collapsed: false,
-  };
+  state = { collapsed: false };
 
-  onCollapse = (collapsed) => {
-    this.setState({ collapsed });
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
   }
 
   render() {
     return (
-      <Layout
-        style={{ minHeight: '100vh' }}
-      >
+      <Layout className={style.layout} >
         <Sider
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
           breakpoint='xs'
+          collapsed={this.state.collapsed}
           collapsedWidth={0}
+          collapsible
+          trigger={null}
           width={250}
         >
+          <div className={style.logo} />
           <ChecklistList/>
         </Sider>
-        <Layout
-          style={{ padding: '0 24px' }}
-        >
-          <Content>
-            <Tasks/>
+        <Layout>
+          <Header className={style.header}>
+            <Icon
+              className={style.trigger}
+              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
+            />
+          </Header>
+          <Content className={style.contentLayout} >
+            <Tasks className={style.contentLayout}/>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
+          <Footer className={style.contentFooter}>
             <small>Made by <a href='http://brunoluiz.net'>Bruno Luiz</a></small>
           </Footer>
         </Layout>

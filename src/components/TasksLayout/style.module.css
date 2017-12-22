@@ -1,17 +1,34 @@
-.container {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 2fr 5fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: 'checklist task';
-  padding: 0 5vh;
-  height: 100vh;
+.layout {
+  min-height: 100vh
 }
 
-.checklist {
-  grid-area: checklist;
+.contentLayout {
+  padding: 0 24px
 }
 
-.task {
-  grid-area: task;
+.contentFooter {
+  text-align: center
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.header {
+  background: #fff;
+  padding: 0
+}
+
+.logo {
+  height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
 }
