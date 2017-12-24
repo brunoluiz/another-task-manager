@@ -22,9 +22,14 @@ const mapStateToProps = (state) => {
       return acc
     }, [])
 
+  const list = state.lists
+    .getIn(['byId', listId])
+    .toJS()
+
   return {
     tasks: uiActiveTasks,
-    listId
+    listId,
+    list
   }
 }
 

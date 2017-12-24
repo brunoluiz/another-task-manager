@@ -21,9 +21,9 @@ export default (props) => (
         type={props.collapsed ? 'menu-unfold' : 'menu-fold'}
         onClick={props.onToggle}
       />
-      <span>
-        Remaining tasks
-      </span>
+      <strong>
+        {props.list.name}
+      </strong>
     </Header>
     <Content className={style.contentLayout} >
       <TaskList
