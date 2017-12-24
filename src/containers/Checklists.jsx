@@ -18,10 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
   onDelete: (id) => dispatch(
     lists.doDelete(id)
   ),
-  onUpdateSave: (e) => {
-    if (e.key === 'Enter')
-      dispatch(lists.doSetUpdatable(null))
-  },
   onUpdate: (e, id) => dispatch(
       lists.doUpdate({ id, value: e.target.value })
   ),
@@ -32,10 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
 
     dispatch(ui.doUpdateActiveList(key))
   },
-  onUpdatable: (id) => dispatch(
-    lists.doSetUpdatable(id)
-  ),
-
   onShowModal: () => dispatch(
     ui.doShowModal()
   ),

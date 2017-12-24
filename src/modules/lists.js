@@ -5,7 +5,6 @@ export const CHECKLIST_CREATE = 'app/lists/CREATE'
 export const CHECKLIST_DELETE = 'app/lists/DELETE'
 export const CHECKLIST_UPDATE = 'app/lists/UPDATE'
 export const CHECKLIST_CHANGE = 'app/lists/CHANGE'
-export const CHECKLIST_UPDATABLE = 'app/lists/UPDATABLE'
 
 export const doCreate = data => ({
   type: CHECKLIST_CREATE,
@@ -26,11 +25,6 @@ export const doUpdate = data => ({
 export const doChangeActive = data => ({
   type: CHECKLIST_CHANGE,
   data
-})
-
-export const doSetUpdatable = id => ({
-  type: CHECKLIST_UPDATABLE,
-  id
 })
 
 const initial = fromJS({
@@ -68,11 +62,7 @@ export default (state = initial, action) => {
       return state
         .setIn(['byId', action.id, 'name'], action.data.value)
 
-    case CHECKLIST_UPDATABLE:
-      return state.set('updatable', action.id)
-
     case CHECKLIST_CHANGE:
-    case CHECKLIST_CREATE:
       return state.set('active', action.data)
 
     default:
