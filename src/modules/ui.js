@@ -32,6 +32,7 @@ export const doToggleMenubar = (props) => ({
 })
 
 export default (state = initial, action) => {
+  console.log(action)
   switch(action.type) {
     case TOGGLE_MENUBAR:
       const collapsed = state.get('collapsedMenu')

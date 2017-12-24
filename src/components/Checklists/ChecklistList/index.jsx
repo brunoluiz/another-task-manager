@@ -50,13 +50,16 @@ export default class extends React.Component {
       <Menu.Item key='create-list'>
         <Icon type='plus' />
         <strong>Create New List</strong>
-        <ChecklistModal
-          onCancel={this.props.onHideModal}
-          onOk={this.handleSubmit}
-          ref={this.saveFormRef}
-          visible={this.props.showModal}
-        />
       </Menu.Item>
+    )
+
+    const modal = (
+      <ChecklistModal
+        onCancel={this.props.onHideModal}
+        onOk={this.handleSubmit}
+        ref={this.saveFormRef}
+        visible={this.props.showModal}
+      />
     )
 
     return (
@@ -68,6 +71,7 @@ export default class extends React.Component {
       >
         {items}
         {createButton}
+        {modal}
       </Menu>
     )
   }
