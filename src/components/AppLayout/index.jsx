@@ -18,7 +18,7 @@ const {
 export default class extends React.Component {
   state = { collapsed: false };
 
-  toggle = () => {
+  doToggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
@@ -40,7 +40,7 @@ export default class extends React.Component {
         </Sider>
         <Tasks
           className={style.contentLayout}
-          onToggle={this.toggle}
+          onToggle={this.doToggle}
           collapsed={this.props.collapsed}
         />
       </Layout>
