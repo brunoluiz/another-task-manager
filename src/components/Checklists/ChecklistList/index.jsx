@@ -36,10 +36,6 @@ export default class extends React.Component {
           style={{ position: 'absolute', top: 0, right: '5px'}}
         >
           <Icon
-            type='edit'
-            onClick={() => this.props.onDelete(id)}
-          />
-          <Icon
             type='delete'
             onClick={() => this.props.onDelete(id)}
           />
