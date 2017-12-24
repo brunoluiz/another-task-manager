@@ -1,10 +1,14 @@
 import { connect } from 'react-redux'
 
-import Checklists from '../components/Checklists'
 import * as lists from '../modules/lists'
+import * as ui from '../modules/ui'
+import Checklists from '../components/Checklists'
 
 const mapStateToProps = (state) => ({
-  lists: state.lists.toJS()
+  active: state.ui.get('activeList'),
+  collapsed: state.ui.get('collapsedMenu'),
+  lists: state.lists.toJS(),
+  showModal: state.ui.get('showModal')
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,11 +25,22 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdate: (e, id) => dispatch(
       lists.doUpdate({ id, value: e.target.value })
   ),
-  onListChange: (id) => dispatch(
-    lists.doChangeActive(id)
-  ),
+  onMenuClick: ({ item, key, keyPath }) => {
+    if (key === 'create-list') {
+      return dispatch(ui.doShowModal())
+    }
+
+    dispatch(ui.doUpdateActiveList(key))
+  },
   onUpdatable: (id) => dispatch(
     lists.doSetUpdatable(id)
+  ),
+
+  onShowModal: () => dispatch(
+    ui.doShowModal()
+  ),
+  onHideModal: () => dispatch(
+    ui.doHideModal()
   )
 })
 

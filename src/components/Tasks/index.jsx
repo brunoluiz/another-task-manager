@@ -19,7 +19,7 @@ export default (props) => (
       <Icon
         className={style.trigger}
         type={props.collapsed ? 'menu-unfold' : 'menu-fold'}
-        onClick={props.onToggle}
+        onClick={props.onCollapse}
       />
       <strong>
         {props.list.name}

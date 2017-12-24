@@ -1,8 +1,6 @@
 import { Map, fromJS } from 'immutable'
 import uuid from 'uuid/v4'
 import {
-  CHECKLIST_CHANGE,
-  CHECKLIST_CREATE,
   CHECKLIST_DELETE
 } from './lists'
 

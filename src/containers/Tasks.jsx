@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 
-import Tasks from '../components/Tasks'
 import * as tasks from '../modules/tasks'
+import * as ui from '../modules/ui'
+import Tasks from '../components/Tasks'
 
 const mapStateToProps = (state) => {
-  const listId = state.lists.get('active')
+  const listId = state.ui.get('activeList')
   const tasks = state.tasks.get('byId')
   const taskIds = state.tasks.get('allIds')
 
@@ -26,10 +27,13 @@ const mapStateToProps = (state) => {
     .getIn(['byId', listId])
     .toJS()
 
+  const collapsed = state.ui.get('collapsedMenu')
+
   return {
     tasks: uiActiveTasks,
     listId,
-    list
+    list,
+    collapsed
   }
 }
 
@@ -57,6 +61,9 @@ const mapDispatchToProps = (dispatch, props) => ({
   ),
   onToogle: (e) => dispatch(
     tasks.doToogle(e.target.value)
+  ),
+  onCollapse: (e) => dispatch(
+    ui.doToggleMenubar()
   )
 })
 

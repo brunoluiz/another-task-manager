@@ -15,27 +15,9 @@ const {
   Sider
 } = Layout;
 
-export default class extends React.Component {
-  state = { collapsed: false };
-
-  doToggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  }
-
-  render() {
-    return (
-      <Layout className={style.layout} >
-        <Checklists
-          collapsed={this.state.collapsed}
-        />
-        <Tasks
-          className={style.contentLayout}
-          onToggle={this.doToggle}
-          collapsed={this.state.collapsed}
-        />
-      </Layout>
-    )
-  }
-}
+export default (props) => (
+  <Layout className={style.layout} >
+    <Checklists/>
+    <Tasks className={style.contentLayout}/>
+  </Layout>
+)

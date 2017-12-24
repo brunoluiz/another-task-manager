@@ -8,41 +8,20 @@ import {
 } from 'antd'
 
 export default class extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { visible: false };
-  }
-
-  handleCancel = (e) => {
-    this.setState({ visible: false })
-  }
-
-  handleClick = ({ item, key, keyPath }) => {
-    if (key === 'create-list') {
-      return this.showCreateModal()
-    }
-
-    this.props.onListChange(key)
-  }
-
   handleCreate = (e) => {
     e.preventDefault()
 
     this.form.validateFields((err, values) => {
       if (err) return
 
-      this.form.resetFields()
-      this.setState({ visible: false })
       this.props.onCreate(values.name)
+      this.props.onHideModal()
+      this.form.resetFields()
     })
   }
 
   saveFormRef = (form) => {
     this.form = form
-  }
-
-  showCreateModal = () => {
-    this.setState({ visible: true })
   }
 
   render() {
@@ -73,10 +52,10 @@ export default class extends React.Component {
         <Icon type='plus' />
         <strong>Create New List</strong>
         <ChecklistModal
-          onCancel={this.handleCancel}
+          onCancel={this.props.onHideModal}
           onOk={this.handleCreate}
           ref={this.saveFormRef}
-          visible={this.state.visible}
+          visible={this.props.showModal}
         />
       </Menu.Item>
     )
@@ -84,9 +63,9 @@ export default class extends React.Component {
     return (
       <Menu
         theme='dark'
-        selectedKeys={[this.props.lists.active]}
+        selectedKeys={[this.props.active]}
         mode='inline'
-        onClick={this.handleClick}
+        onClick={(e) => this.props.onMenuClick(e)}
       >
         {items}
         {createButton}
