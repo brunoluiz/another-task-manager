@@ -25,7 +25,6 @@ export const doUpdate = data => ({
 })
 
 const initial = fromJS({
-  updatable: false,
   byId: {
     x: { id: 'x', name: 'Test list' },
   },
@@ -43,7 +42,6 @@ export default (state = initial, action) => {
       return state
         .setIn(['byId', list.id], Map(list))
         .updateIn(['allIds'], (arr) => arr.push(list.id))
-        .set('updatable', null)
 
     case CHECKLIST_DELETE:
       return state
@@ -51,7 +49,6 @@ export default (state = initial, action) => {
         .updateIn(['allIds'], (arr) => arr.delete(
           arr.findIndex((id) => id === action.id)
         ))
-        .set('updatable', null)
 
     case CHECKLIST_UPDATE:
       return state
