@@ -12,20 +12,19 @@ const mapStateToProps = (state) => {
   const list = state.lists
       .getIn(['byId', listId])
 
-  const uiActiveTasks = listId
-    ? tasks.reduce((acc, task) => {
+  const sortedTasks = taskIds
+    .map(id => tasks.get(id))
+
+  const uiActiveTasks = sortedTasks
+    .reduce((acc, task) => {
       // Filter tasks which are not on the actual list
       if( task.get('listId') !== listId ) return acc
 
-      // Sort the tasks based on allIds
-      const taskId = task.get('id')
-      const index = taskIds.indexOf(taskId)
-      acc[index] = task.toJS()
-
       // Maybe a bottleneck will be the toJS()
-      return acc
+      return task.get('done')
+        ? [...acc, task.toJS()]
+        : [task.toJS(), ...acc]
     }, [])
-    : null
 
   const collapsed = state.ui.get('collapsedMenu')
 
