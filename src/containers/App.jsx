@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import TasksLayout from '../components/TasksLayout'
+import AppLayout from '../components/AppLayout'
 
 export default class App extends Component {
   render() {
-    return (<TasksLayout/ >)
+    return (<AppLayout/ >)
   }
 }

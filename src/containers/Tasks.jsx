@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import TaskList from '../components/Tasks/TaskList'
+import Tasks from '../components/Tasks'
 import * as tasks from '../modules/tasks'
 
 const mapStateToProps = (state) => {
@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TaskList)
+)(Tasks)

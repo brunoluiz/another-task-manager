@@ -38,24 +38,11 @@ export default class extends React.Component {
           <div className={style.logo} />
           <ChecklistList/>
         </Sider>
-        <Layout>
-          <Header className={style.header}>
-            <Icon
-              className={style.trigger}
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-            <span>
-              Remaining tasks
-            </span>
-          </Header>
-          <Content className={style.contentLayout} >
-            <Tasks className={style.contentLayout}/>
-          </Content>
-          <Footer className={style.contentFooter}>
-            <small>Made by <a href='http://brunoluiz.net'>Bruno Luiz</a></small>
-          </Footer>
-        </Layout>
+        <Tasks
+          className={style.contentLayout}
+          onToggle={this.toggle}
+          collapsed={this.props.collapsed}
+        />
       </Layout>
     )
   }
