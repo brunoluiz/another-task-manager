@@ -1,6 +1,7 @@
 import {
   fromJS
 } from 'immutable'
+import * as lists from './lists.js'
 
 export const UPDATE_ACTIVELIST = 'app/ui/UPDATE_ACTIVELIST'
 export const SHOW_MODAL = 'app/ui/SHOW_MODAL'
@@ -44,6 +45,10 @@ export default (state = initial, action) => {
     case UPDATE_ACTIVELIST:
       return state
         .set('activeList', action.id)
+    case lists.CHECKLIST_DELETE:
+      return (action.id === state.get('activeList'))
+        ? state.set('activeList', null)
+        : state
     default:
       return state
   }

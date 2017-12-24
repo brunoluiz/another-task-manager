@@ -13,7 +13,7 @@ const {
   Header
 } = Layout;
 
-export default (props) => (
+const TasksLayout = (props) => (
   <Layout>
     <Header className={style.header}>
       <Icon
@@ -21,18 +21,28 @@ export default (props) => (
         type={props.collapsed ? 'menu-unfold' : 'menu-fold'}
         onClick={props.onCollapse}
       />
-      <strong>
-        {props.list.name}
-      </strong>
+      <strong>{ props.list ? props.list.name : '' }</strong>
     </Header>
     <Content className={style.contentLayout} >
-      <TaskList
-        className={style.contentLayout}
-        {...props}
-      />
+      { props.children }
     </Content>
     <Footer className={style.contentFooter}>
       <small>Made by <a href='http://brunoluiz.net'>Bruno Luiz</a></small>
     </Footer>
   </Layout>
-);
+)
+
+export default (props) => {
+  const content = props.list
+    ? <TaskList
+      className={style.contentLayout}
+      {...props}
+    />
+    : null
+  return (
+    <TasksLayout {...props}>
+      { content }
+    </TasksLayout>
+  )
+}
+
