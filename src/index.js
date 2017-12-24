@@ -1,17 +1,15 @@
+import './index.css'
+import 'normalize.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-
-import App from './containers/App.jsx'
-import store from './store'
 import registerServiceWorker from './registerServiceWorker'
-
-import 'normalize.css'
-import './index.css'
+import router from './router'
+import store from './store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    {router}
   </Provider>,
   document.getElementById('root')
 )
