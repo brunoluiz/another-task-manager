@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import ChecklistList from '../components/Checklists/ChecklistList'
+import Checklists from '../components/Checklists'
 import * as lists from '../modules/lists'
 
 const mapStateToProps = (state) => ({
@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ChecklistList)
+)(Checklists)

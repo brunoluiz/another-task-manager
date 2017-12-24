@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChecklistList from '../../containers/Checklists'
+import Checklists from '../../containers/Checklists'
 import style from './style.module.css'
 import Tasks from '../../containers/Tasks'
 import {
@@ -27,21 +27,13 @@ export default class extends React.Component {
   render() {
     return (
       <Layout className={style.layout} >
-        <Sider
-          breakpoint='xs'
+        <Checklists
           collapsed={this.state.collapsed}
-          collapsedWidth={0}
-          collapsible
-          trigger={null}
-          width={250}
-        >
-          <div className={style.logo} />
-          <ChecklistList/>
-        </Sider>
+        />
         <Tasks
           className={style.contentLayout}
           onToggle={this.doToggle}
-          collapsed={this.props.collapsed}
+          collapsed={this.state.collapsed}
         />
       </Layout>
     )
