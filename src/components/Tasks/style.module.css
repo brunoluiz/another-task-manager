@@ -20,6 +20,13 @@
 
 .header {
   background: #fff;
-  padding: 0
+  padding: 0;
+  display: flex
 }
 
+.header > strong {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

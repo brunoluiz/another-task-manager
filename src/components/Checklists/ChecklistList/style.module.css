@@ -1,3 +1,10 @@
-.list > .ant-list-header {
-  background: red
+.textWrap {
+  display: inline-flex
+}
+
+.textWrap > span {
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

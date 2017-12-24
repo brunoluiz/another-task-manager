@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ChecklistModal from '../ChecklistModal'
+import style from './style.module.css'
 import {
   Affix,
   Icon,
@@ -30,7 +31,9 @@ export default class extends React.Component {
       .map(id =>
       <Menu.Item key={id}>
         <Icon type='bars' />
-        <span>{lists[id].name}</span>
+        <span className={style.textWrap}>
+          <span>{lists[id].name}</span>
+        </span>
         <Affix
           offsetBottom={0}
           style={{ position: 'absolute', top: 0, right: '5px'}}
