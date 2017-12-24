@@ -54,6 +54,7 @@ export default (state = initial, action) => {
         .setIn(['byId', list.id], Map(list))
         .updateIn(['allIds'], (arr) => arr.push(list.id))
         .set('updatable', null)
+        .set('active', list.id)
 
     case CHECKLIST_DELETE:
       return state

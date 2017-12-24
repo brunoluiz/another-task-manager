@@ -84,7 +84,7 @@ export default class extends React.Component {
     return (
       <Menu
         theme='dark'
-        defaultSelectedKeys={[this.props.lists.active]}
+        selectedKeys={[this.props.lists.active]}
         mode='inline'
         onClick={this.handleClick}
       >
