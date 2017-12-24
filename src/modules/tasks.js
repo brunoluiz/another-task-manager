@@ -13,7 +13,8 @@ export const TASK_UPDATE = 'app/tasks/TASK_UPDATE'
 
 export const doCreate = data => ({
   type: TASK_CREATE,
-  data
+  listId: data.listId,
+  data: data.value
 })
 
 export const doDelete = data => ({
@@ -28,14 +29,13 @@ export const doToogle = data => ({
 
 export const doUpdate = data => ({
   type: TASK_UPDATE,
-  data,
+  data: data.value,
   id: data.id
 })
 
 const $id = uuid()
 
 const initial = fromJS({
-  active: 'x',
   byId: {
     [$id]: { id: $id, value: 'test', done: false, listId: 'x' }
   },
@@ -43,15 +43,13 @@ const initial = fromJS({
 })
 
 export default (state = initial, action) => {
-  const active = state.get('active')
-
   switch(action.type) {
     case TASK_CREATE:
       const task = {
-        id: uuid(),
-        value: action.data,
         done: false,
-        listId: active
+        id: uuid(),
+        listId: action.listId,
+        value: action.data
       }
 
       return state
@@ -67,7 +65,7 @@ export default (state = initial, action) => {
 
     case TASK_UPDATE:
       return state
-        .setIn(['byId', action.id, 'value'], action.data.value)
+        .setIn(['byId', action.id, 'value'], action.data)
 
     case TASK_TOOGLE:
       return state.updateIn(['byId', action.id], (tasks) => {
@@ -75,10 +73,6 @@ export default (state = initial, action) => {
 
         return tasks.set('done', !done);
       })
-
-    case CHECKLIST_CHANGE:
-    case CHECKLIST_CREATE:
-      return state.set('active', action.data)
 
     case CHECKLIST_DELETE:
       return state
@@ -91,7 +85,6 @@ export default (state = initial, action) => {
             .setIn(['byId', task.id], Map(task))
             .updateIn(['allIds'], (arr) => arr.push(task.id))
         }, fromJS({
-          active: null,
           byId: {},
           allIds: []
         }))

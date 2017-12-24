@@ -19,7 +19,7 @@ export default (props) => (
   >
     <Input
       onChange={props.onChange}
-      onKeyPress={props.onCreate}
+      onKeyPress={(e) => props.onCreate(e, props.listId)}
       placeholder='Add a task'
       prefix={<Icon type='plus' style={{ color: 'rgba(0,0,0,.25)' }} />}
       size='large'

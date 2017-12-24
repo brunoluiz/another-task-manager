@@ -21,6 +21,7 @@ export default (props) => {
     <TaskCreate
       key='create-task'
       onCreate={props.onCreate}
+      listId={props.listId}
     />
   )
 

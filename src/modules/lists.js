@@ -70,6 +70,10 @@ export default (state = initial, action) => {
     case CHECKLIST_UPDATABLE:
       return state.set('updatable', action.id)
 
+    case CHECKLIST_CHANGE:
+    case CHECKLIST_CREATE:
+      return state.set('active', action.data)
+
     default:
       return state
   }
