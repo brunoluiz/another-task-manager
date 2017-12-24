@@ -8,7 +8,7 @@ import {
 } from 'antd'
 
 export default class extends React.Component {
-  handleCreate = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault()
 
     this.form.validateFields((err, values) => {
@@ -53,7 +53,7 @@ export default class extends React.Component {
         <strong>Create New List</strong>
         <ChecklistModal
           onCancel={this.props.onHideModal}
-          onOk={this.handleCreate}
+          onOk={this.handleSubmit}
           ref={this.saveFormRef}
           visible={this.props.showModal}
         />
