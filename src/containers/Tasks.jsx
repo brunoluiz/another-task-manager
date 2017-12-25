@@ -6,6 +6,7 @@ import Tasks from '../components/Tasks'
 
 const mapStateToProps = (state) => {
   const listId = state.ui.get('activeList')
+  const updatableTask = state.ui.get('updatableTask')
   const tasks = state.tasks.get('byId')
   const taskIds = state.tasks.get('allIds')
 
@@ -32,7 +33,8 @@ const mapStateToProps = (state) => {
     tasks: uiActiveTasks,
     listId,
     list: list ? list.toJS() : null,
-    collapsed
+    collapsed,
+    updatableTask
   }
 }
 
@@ -63,6 +65,9 @@ const mapDispatchToProps = (dispatch, props) => ({
   ),
   onCollapse: (e) => dispatch(
     ui.doToggleMenubar()
+  ),
+  onSetUpdatable: (id) => dispatch(
+    ui.doSetUpdatableTask(id)
   )
 })
 
