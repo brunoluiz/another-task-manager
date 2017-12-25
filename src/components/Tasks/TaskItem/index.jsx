@@ -16,14 +16,10 @@ const deleteAction = (props) => (
   />
 )
 
-const itemText = (props) => props.done
-  ? (
-    <del>{ props.value }</del>
-  )
-  : (
-    <span>{ props.value }</span>
-  )
-
+const itemStyle = (props) => {
+  const done = props.done ? style.done : ''
+  return `${style.item} ${done}`
+}
 
 export default (props) => (
   <List.Item
@@ -31,7 +27,7 @@ export default (props) => (
     actions={[
       deleteAction(props)
     ]}
-    className={style.item}
+    className={itemStyle(props)}
   >
     <div className={style.centerized} >
       <Checkbox
@@ -41,7 +37,7 @@ export default (props) => (
         className={style.checkbox}
         value={props.id}
       />
-      { itemText(props) }
+      { props.value }
     </div>
   </List.Item>
 )
