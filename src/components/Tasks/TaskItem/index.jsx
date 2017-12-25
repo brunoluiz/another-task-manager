@@ -29,7 +29,7 @@ const textValue = (props) => props.updatableTask === props.id
   ? (
     <Input value={props.value} onChange={(e) => props.onUpdate(e, props.id)}/>
   ) : (
-    <span>{ props.value }</span>
+    <span className={style.text}>{ props.value }</span>
   )
 
 export default (props) => (

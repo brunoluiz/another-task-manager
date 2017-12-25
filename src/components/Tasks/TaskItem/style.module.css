@@ -4,6 +4,13 @@
   width: 100%
 }
 
+.centerized > span {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 12px;
+}
+
 .checkbox {
   margin-right: 5px;
 }
