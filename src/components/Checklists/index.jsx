@@ -13,6 +13,7 @@ const {
 export default (props) => (
   <Sider
     breakpoint='xs'
+    className={style.sider}
     collapsed={props.collapsed}
     collapsedWidth={0}
     collapsible

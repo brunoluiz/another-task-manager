@@ -4,3 +4,8 @@
   margin: 16px;
 }
 
+@media (max-width: 480px) {
+  .sider {
+    z-index: 1;
+  }
+}

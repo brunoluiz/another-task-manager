@@ -1,5 +1,16 @@
 .contentLayout {
-  padding: 0 24px
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+}
+/*                             */
+@media (max-width: 480px) {
+  .contentLayout {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 76px;
+  }
 }
 
 .contentFooter {

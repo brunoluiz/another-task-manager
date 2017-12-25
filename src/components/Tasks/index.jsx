@@ -26,18 +26,12 @@ const TasksLayout = (props) => (
     <Content className={style.contentLayout} >
       { props.children }
     </Content>
-    <Footer className={style.contentFooter}>
-      <small>Made by <a href='http://brunoluiz.net'>Bruno Luiz</a></small>
-    </Footer>
   </Layout>
 )
 
 export default (props) => {
   const content = props.list
-    ? <TaskList
-      className={style.contentLayout}
-      {...props}
-    />
+    ? <TaskList {...props}/>
     : null
   return (
     <TasksLayout {...props}>

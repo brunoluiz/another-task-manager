@@ -31,14 +31,17 @@ export const doUpdate = data => ({
   id: data.id
 })
 
-const $id = uuid()
-
-const initial = fromJS({
-  byId: {
-    [$id]: { id: $id, value: 'test', done: false, listId: 'x' }
-  },
-  allIds: [$id]
+let initial = ({
+  byId: {},
+  allIds: []
 })
+
+for (let i = 0; i < 20; i++) {
+  const id = uuid()
+  initial.byId[id] ={ id, value: `test ${i}`, done: false, listId: 'x' }
+  initial.allIds.push(id)
+}
+initial = fromJS(initial)
 
 export default (state = initial, action) => {
   switch(action.type) {

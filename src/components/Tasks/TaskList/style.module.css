@@ -1,4 +1,6 @@
 .list {
-  list-style: none;
-  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 24px;
+  height: calc(100vh - 80px);
 }

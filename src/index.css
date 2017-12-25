@@ -1,3 +1,11 @@
 input, button, textarea {
   outline: none;
 }
+
+body {
+  -webkit-touch-callout: none !important;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  width: 100vh;
+}
