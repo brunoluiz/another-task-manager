@@ -9,11 +9,21 @@ import {
   List
 } from 'antd'
 
-const deleteAction = (props) =>
+const deleteAction = (props) => (
   <Icon
     onClick={() => props.onDelete(props.id)}
     type='delete'
   />
+)
+
+const itemText = (props) => props.done
+  ? (
+    <del>{ props.value }</del>
+  )
+  : (
+    <span>{ props.value }</span>
+  )
+
 
 export default (props) => (
   <List.Item
@@ -21,7 +31,7 @@ export default (props) => (
     actions={[
       deleteAction(props)
     ]}
-    className='task-list-item'
+    className={style.item}
   >
     <div className={style.centerized} >
       <Checkbox
@@ -31,11 +41,7 @@ export default (props) => (
         className={style.checkbox}
         value={props.id}
       />
-      <Input
-        onChange={(e) => props.onUpdate(e, props.id)}
-        value={props.value}
-        disabled={props.done}
-      />
+      { itemText(props) }
     </div>
   </List.Item>
 )

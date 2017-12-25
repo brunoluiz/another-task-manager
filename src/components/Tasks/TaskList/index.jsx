@@ -30,8 +30,10 @@ export default (props) => {
       className={`${props.className} ${style.list}`}
       itemLayout='horizontal'
     >
+      <div style={{ minHeight: '101%' }}>
       {createTask}
       {items}
+      </div>
     </List>
   )
 }
