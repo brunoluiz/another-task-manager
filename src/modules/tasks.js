@@ -8,21 +8,9 @@ export const TASK_CREATE = 'app/tasks/TASK_CREATE'
 export const TASK_DELETE = 'app/tasks/TASK_DELETE'
 export const TASK_UPDATE = 'app/tasks/TASK_UPDATE'
 
-export const doCreate = data => ({
-  type: TASK_CREATE,
-  ...data
-})
-
-export const doDelete = data => ({
-  type: TASK_DELETE,
-  id: data
-})
-
-export const doToogle = data => ({
-  type: TASK_TOOGLE,
-  id: data
-})
-
+export const doCreate = data => ({ type: TASK_CREATE, ...data })
+export const doDelete = data => ({ type: TASK_DELETE, id: data })
+export const doToogle = data => ({ type: TASK_TOOGLE, id: data })
 export const doUpdate = data => ({
   type: TASK_UPDATE,
   data: data.value,

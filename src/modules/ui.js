@@ -10,6 +10,13 @@ export const HIDE_MODAL = 'app/ui/HIDE_MODAL'
 export const TOGGLE_MENUBAR = 'app/ui/CHANGE_ACTIVELIST'
 export const SET_UPDATABLE_TASK = 'app/ui/SET_UPDATABLE_TASK'
 
+export const doHideModal = (props) => ({ type: HIDE_MODAL })
+export const doSetUpdatableTask = (id) => ({ type: SET_UPDATABLE_TASK, id })
+export const doShowCreateModal = data => ({ type: SHOW_CREATE_MODAL })
+export const doShowUpdateModal = ({ id }) => ({ type: SHOW_UPDATE_MODAL, id })
+export const doToggleMenubar = (props) => ({ type: TOGGLE_MENUBAR })
+export const doUpdateActiveList = (id) => ({ type: UPDATE_ACTIVELIST, id })
+
 const initial = fromJS({
   activeList: 'x',
   updatableTask: null,
@@ -18,33 +25,6 @@ const initial = fromJS({
     createList: { visible: false },
     updateList: { id: null, visible: false }
   }
-})
-
-export const doUpdateActiveList = (id) => ({
-  id,
-  type: UPDATE_ACTIVELIST
-})
-
-export const doHideModal = (props) => ({
-  type: HIDE_MODAL
-})
-
-export const doShowCreateModal = data => ({
-  type: SHOW_CREATE_MODAL
-})
-
-export const doShowUpdateModal = ({ id }) => ({
-  type: SHOW_UPDATE_MODAL,
-  id
-})
-
-export const doToggleMenubar = (props) => ({
-  type: TOGGLE_MENUBAR
-})
-
-export const doSetUpdatableTask = (id) => ({
-  type: SET_UPDATABLE_TASK,
-  id
 })
 
 export default (state = initial, action) => {
