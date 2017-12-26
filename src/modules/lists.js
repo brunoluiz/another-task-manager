@@ -11,12 +11,7 @@ export const doCreate = data => ({ type: CHECKLIST_CREATE, ...data })
 export const doDelete = id => ({ type: CHECKLIST_DELETE, id })
 export const doUpdate = data => ({ type: CHECKLIST_UPDATE, ...data })
 
-const initial = fromJS({
-  byId: {
-    x: { id: 'x', name: 'Test list' },
-  },
-  allIds: ['x']
-})
+const initial = fromJS({ byId: {}, allIds: [] })
 
 export default (state = initial, action) => {
   switch(action.type) {

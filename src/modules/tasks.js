@@ -13,24 +13,19 @@ export const doDelete = data => ({ type: TASK_DELETE, id: data })
 export const doToogle = data => ({ type: TASK_TOOGLE, id: data })
 export const doUpdate = data => ({ type: TASK_UPDATE, ...data })
 
-let initial = fromJS({
-  byId: {},
-  allIds: []
-})
+const initial = fromJS({ byId: {}, allIds: [] })
 
 export default (state = initial, action) => {
   switch(action.type) {
     case TASK_CREATE:
-      const task = {
-        done: false,
-        id: action.id,
-        listId: action.listId,
-        value: action.value
-      }
-
       return state
-        .setIn(['byId', task.id], Map(task))
-        .updateIn(['allIds'], (arr) => arr.push(task.id))
+        .setIn(['byId', action.id], Map({
+          done: false,
+          id: action.id,
+          listId: action.listId,
+          value: action.value
+        }))
+        .updateIn(['allIds'], (arr) => arr.push(action.id))
 
     case TASK_DELETE:
       return state
@@ -50,6 +45,7 @@ export default (state = initial, action) => {
         return tasks.set('done', !done);
       })
 
+    // TODO: For sure this should be refactored... it doesn't perform well
     case CHECKLIST_DELETE:
       return state
         .get('byId')

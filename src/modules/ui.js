@@ -18,7 +18,7 @@ export const doToggleMenubar = (props) => ({ type: TOGGLE_MENUBAR })
 export const doUpdateActiveList = (id) => ({ type: UPDATE_ACTIVELIST, id })
 
 const initial = fromJS({
-  activeList: 'x',
+  activeList: null,
   updatableTask: null,
   collapsedMenu: false,
   modal: {
