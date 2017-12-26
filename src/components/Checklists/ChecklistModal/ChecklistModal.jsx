@@ -6,7 +6,17 @@ import {
   Modal
 } from 'antd'
 
-export default Form.create()((props) => {
+export default Form.create({
+  mapPropsToFields: ({ data }) => {
+    if (!data) return {}
+
+    return {
+      name: Form.createFormField({
+        value: data.name
+      })
+    }
+  }
+})((props) => {
   const {
     form,
     onCancel,
@@ -17,8 +27,21 @@ export default Form.create()((props) => {
   } = props
 
   const {
-    getFieldDecorator
+    getFieldDecorator,
+    setFieldsValue
   } = form;
+
+  const items = (
+    <Form.Item>
+      {
+        getFieldDecorator('name', {
+          rules: [
+            { required: true, message: 'Please insert a name for your list' }
+          ]
+        })(<Input placeholder='List name' autoFocus />)
+      }
+    </Form.Item>
+  )
 
   return (
     <Modal
@@ -32,14 +55,7 @@ export default Form.create()((props) => {
         layout='vertical'
         onSubmit={onOk}
       >
-        <Form.Item>
-          { getFieldDecorator('name', {
-              rules: [
-                { required: true, message: 'Please insert a name for your list' }
-              ]
-            })(<Input placeholder='List name' autoFocus />)
-          }
-        </Form.Item>
+      { items }
       </Form>
     </Modal>
   )

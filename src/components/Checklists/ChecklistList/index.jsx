@@ -11,77 +11,57 @@ import {
   Menu,
 } from 'antd'
 
-export default class extends React.Component {
-  handleSubmit = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
+export default (props) => {
+  const lists = props.lists.byId
+  const items = Object.keys(lists)
+    .map(id =>
+    <Menu.Item key={id}>
+      <Icon type='bars' />
+      <span className={style.textWrap}>
+        <span>{lists[id].name}</span>
+      </span>
+      <Affix className={style.actions}>
+        <Icon type='edit' onClick={() => props.onEditClick(id)}/>
+        <Icon type='delete' onClick={() => props.onDelete(id)}/>
+      </Affix>
+    </Menu.Item>
+  )
 
-    this.form.validateFields((err, values) => {
-      if (err) return
+  const createButton = (
+    <Menu.Item key='create-list'>
+      <Icon type='plus' />
+      <strong>Create New List</strong>
+    </Menu.Item>
+  )
 
-      this.props.onCreate(values.name)
-      this.props.onHideModal()
-      this.form.resetFields()
-    })
-  }
+  const createModal = (
+    <ChecklistCreateModal
+      onHide={props.onHideModal}
+      onCreate={props.onCreate}
+      visible={props.modal.createList.visible}
+    />
+  )
 
-  saveFormRef = (form) => {
-    this.form = form
-  }
+  const updateModal = (
+    <ChecklistUpdateModal
+      onHide={props.onHideModal}
+      onUpdate={props.onUpdate}
+      visible={props.modal.updateList.visible}
+      data={lists[props.modal.updateList.id]}
+    />
+  )
 
-  render() {
-    const lists = this.props.lists.byId
-    const items = Object.keys(lists)
-      .map(id =>
-      <Menu.Item key={id}>
-        <Icon type='bars' />
-        <span className={style.textWrap}>
-          <span>{lists[id].name}</span>
-        </span>
-        <Affix className={style.actions}>
-          <Icon type='edit' onClick={() => this.props.onDelete(id)}/>
-          <Icon type='delete' onClick={() => this.props.onDelete(id)}/>
-        </Affix>
-      </Menu.Item>
-    )
-
-    const createButton = (
-      <Menu.Item key='create-list'>
-        <Icon type='plus' />
-        <strong>Create New List</strong>
-      </Menu.Item>
-    )
-
-    const createModal = (
-      <ChecklistCreateModal
-        onCancel={this.props.onHideModal}
-        onOk={this.handleSubmit}
-        onRef={this.saveFormRef}
-        visible={this.props.showModal}
-      />
-    )
-
-    const updateModal = (
-      <ChecklistCreateModal
-        onCancel={this.props.onHideModal}
-        onOk={this.handleSubmit}
-        onRef={this.saveFormRef}
-        visible={this.props.showModal}
-      />
-    )
-
-    return (
-      <Menu
-        theme='dark'
-        selectedKeys={[this.props.active]}
-        mode='inline'
-        onClick={(e) => this.props.onMenuClick(e)}
-      >
-        {items}
-        {createButton}
-        {createModal}
-        {updateModal}
-      </Menu>
-    )
-  }
+  return (
+    <Menu
+      theme='dark'
+      selectedKeys={[props.active]}
+      mode='inline'
+      onClick={(e) => props.onMenuClick(e)}
+    >
+      {items}
+      {createButton}
+      {createModal}
+      {updateModal}
+    </Menu>
+  )
 }

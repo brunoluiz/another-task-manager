@@ -19,8 +19,7 @@ export const doDelete = data => ({
 
 export const doUpdate = data => ({
   type: CHECKLIST_UPDATE,
-  data,
-  id: data.id
+  ...data
 })
 
 const initial = fromJS({
@@ -47,8 +46,9 @@ export default (state = initial, action) => {
         ))
 
     case CHECKLIST_UPDATE:
+      console.log(action)
       return state
-        .setIn(['byId', action.id, 'name'], action.data.value)
+        .setIn(['byId', action.id, 'name'], action.name)
 
     default:
       return state

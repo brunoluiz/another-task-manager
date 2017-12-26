@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
   active: state.ui.get('activeList'),
   collapsed: state.ui.get('collapsedMenu'),
   lists: state.lists.toJS(),
-  showModal: state.ui.get('showModal')
+  modal: state.ui.get('modal').toJS()
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,19 +21,19 @@ const mapDispatchToProps = (dispatch) => ({
   onDelete: (id) => dispatch(
     lists.doDelete(id)
   ),
-  onUpdate: (e, id) => dispatch(
-      lists.doUpdate({ id, value: e.target.value })
+  onUpdate: (data) => dispatch(
+    lists.doUpdate(data)
+  ),
+  onEditClick: (id) => dispatch(
+    ui.doShowUpdateModal({ id })
   ),
   onMenuClick: ({ item, key, keyPath }) => {
     if (key === 'create-list') {
-      return dispatch(ui.doShowModal())
+      return dispatch(ui.doShowCreateModal())
     }
 
     dispatch(ui.doUpdateActiveList(key))
   },
-  onShowModal: () => dispatch(
-    ui.doShowModal()
-  ),
   onHideModal: () => dispatch(
     ui.doHideModal()
   )

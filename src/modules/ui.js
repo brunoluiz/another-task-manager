@@ -4,7 +4,8 @@ import {
 import * as lists from './lists.js'
 
 export const UPDATE_ACTIVELIST = 'app/ui/UPDATE_ACTIVELIST'
-export const SHOW_MODAL = 'app/ui/SHOW_MODAL'
+export const SHOW_UPDATE_MODAL = 'app/ui/SHOW_UPDATE_MODAL'
+export const SHOW_CREATE_MODAL = 'app/ui/SHOW_CREATE_MODAL'
 export const HIDE_MODAL = 'app/ui/HIDE_MODAL'
 export const TOGGLE_MENUBAR = 'app/ui/CHANGE_ACTIVELIST'
 export const SET_UPDATABLE_TASK = 'app/ui/SET_UPDATABLE_TASK'
@@ -12,9 +13,11 @@ export const SET_UPDATABLE_TASK = 'app/ui/SET_UPDATABLE_TASK'
 const initial = fromJS({
   activeList: 'x',
   updatableTask: null,
-  updatableList: null,
   collapsedMenu: false,
-  showModal: false
+  modal: {
+    createList: { visible: false },
+    updateList: { id: null, visible: false }
+  }
 })
 
 export const doUpdateActiveList = (id) => ({
@@ -26,8 +29,13 @@ export const doHideModal = (props) => ({
   type: HIDE_MODAL
 })
 
-export const doShowModal = (props) => ({
-  type: SHOW_MODAL
+export const doShowCreateModal = data => ({
+  type: SHOW_CREATE_MODAL
+})
+
+export const doShowUpdateModal = ({ id }) => ({
+  type: SHOW_UPDATE_MODAL,
+  id
 })
 
 export const doToggleMenubar = (props) => ({
@@ -44,12 +52,17 @@ export default (state = initial, action) => {
     case TOGGLE_MENUBAR:
       const collapsed = state.get('collapsedMenu')
       return state.set('collapsedMenu', !collapsed)
-    case SHOW_MODAL:
+    case SHOW_CREATE_MODAL:
       return state
-        .set('showModal', true)
+        .setIn(['modal', 'createList', 'visible'], true)
+    case SHOW_UPDATE_MODAL:
+      return state
+        .setIn(['modal', 'updateList', 'visible'], true)
+        .setIn(['modal', 'updateList', 'id'], action.id)
     case HIDE_MODAL:
       return state
-        .set('showModal', false)
+        .setIn(['modal', 'createList', 'visible'], false)
+        .setIn(['modal', 'updateList', 'visible'], false)
     case UPDATE_ACTIVELIST:
       return state
         .set('activeList', action.id)
