@@ -8,7 +8,7 @@ export default class extends React.Component {
     this.form.validateFields((err, values) => {
       if (err) return
 
-      this.props.onCreate(values.name)
+      this.props.onCreate(values)
       this.props.onHide()
       this.form.resetFields()
     })

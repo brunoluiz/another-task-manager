@@ -32,7 +32,7 @@ const initial = fromJS({
 export default (state = initial, action) => {
   switch(action.type) {
     case CHECKLIST_CREATE:
-      const list = { id: action.id, name: action.value }
+      const list = { id: action.id, name: action.name }
 
       return state
         .setIn(['byId', list.id], Map(list))

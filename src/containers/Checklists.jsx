@@ -12,10 +12,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreate: (value) => {
+  onCreate: (data) => {
     return dispatch(lists.doCreate({
       id: uuid(),
-      value
+      ...data
     }))
   },
   onDelete: (id) => dispatch(
