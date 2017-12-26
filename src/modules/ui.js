@@ -54,7 +54,6 @@ export default (state = initial, action) => {
       return state
         .set('activeList', action.id)
     case SET_UPDATABLE_TASK:
-      console.log(action.id)
       return state
         .set('updatableTask', action.id)
     case lists.CHECKLIST_CREATE:

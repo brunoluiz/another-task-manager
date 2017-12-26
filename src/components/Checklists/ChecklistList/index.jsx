@@ -1,6 +1,9 @@
 import React from 'react';
 
-import ChecklistModal from '../ChecklistModal'
+import {
+  ChecklistCreateModal,
+  ChecklistUpdateModal
+} from '../ChecklistModal'
 import style from './style.module.css'
 import {
   Affix,
@@ -49,11 +52,20 @@ export default class extends React.Component {
       </Menu.Item>
     )
 
-    const modal = (
-      <ChecklistModal
+    const createModal = (
+      <ChecklistCreateModal
         onCancel={this.props.onHideModal}
         onOk={this.handleSubmit}
-        ref={this.saveFormRef}
+        onRef={this.saveFormRef}
+        visible={this.props.showModal}
+      />
+    )
+
+    const updateModal = (
+      <ChecklistCreateModal
+        onCancel={this.props.onHideModal}
+        onOk={this.handleSubmit}
+        onRef={this.saveFormRef}
         visible={this.props.showModal}
       />
     )
@@ -67,7 +79,8 @@ export default class extends React.Component {
       >
         {items}
         {createButton}
-        {modal}
+        {createModal}
+        {updateModal}
       </Menu>
     )
   }
