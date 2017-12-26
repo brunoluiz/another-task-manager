@@ -2,7 +2,6 @@ import { Map, fromJS } from 'immutable'
 import {
   UPDATE_ACTIVELIST
 } from './ui.js'
-import uuid from 'uuid/v4'
 
 export const CHECKLIST_CREATE = 'app/lists/CREATE'
 export const CHECKLIST_DELETE = 'app/lists/DELETE'
@@ -10,7 +9,7 @@ export const CHECKLIST_UPDATE = 'app/lists/UPDATE'
 
 export const doCreate = data => ({
   type: CHECKLIST_CREATE,
-  data
+  ...data
 })
 
 export const doDelete = data => ({
@@ -34,10 +33,7 @@ const initial = fromJS({
 export default (state = initial, action) => {
   switch(action.type) {
     case CHECKLIST_CREATE:
-      const list = {
-        id: uuid(),
-        name: action.data
-      }
+      const list = { id: action.id, name: action.value }
 
       return state
         .setIn(['byId', list.id], Map(list))

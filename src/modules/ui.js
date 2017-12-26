@@ -55,6 +55,8 @@ export default (state = initial, action) => {
     case SET_UPDATABLE_TASK:
       return state
         .set('updatableTask', action.id)
+    case lists.CHECKLIST_CREATE:
+      return state.set('activeList', action.id)
     case lists.CHECKLIST_DELETE:
       return (action.id === state.get('activeList'))
         ? state.set('activeList', null)

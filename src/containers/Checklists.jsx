@@ -1,8 +1,8 @@
-import { connect } from 'react-redux'
-
 import * as lists from '../modules/lists'
 import * as ui from '../modules/ui'
 import Checklists from '../components/Checklists'
+import uuid from 'uuid/v4'
+import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
   active: state.ui.get('activeList'),
@@ -13,7 +13,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onCreate: (value) => {
-    return dispatch(lists.doCreate(value))
+    return dispatch(lists.doCreate({
+      id: uuid(),
+      value
+    }))
   },
   onDelete: (id) => dispatch(
     lists.doDelete(id)
