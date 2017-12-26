@@ -11,6 +11,7 @@ import {
 export default class extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
+    e.stopPropagation()
 
     this.form.validateFields((err, values) => {
       if (err) return
