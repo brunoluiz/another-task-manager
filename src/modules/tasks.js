@@ -1,5 +1,4 @@
 import { Map, fromJS } from 'immutable'
-import uuid from 'uuid/v4'
 import {
   CHECKLIST_DELETE
 } from './lists'
@@ -11,8 +10,7 @@ export const TASK_UPDATE = 'app/tasks/TASK_UPDATE'
 
 export const doCreate = data => ({
   type: TASK_CREATE,
-  listId: data.listId,
-  data: data.value
+  ...data
 })
 
 export const doDelete = data => ({
@@ -31,26 +29,19 @@ export const doUpdate = data => ({
   id: data.id
 })
 
-let initial = ({
+let initial = fromJS({
   byId: {},
   allIds: []
 })
-
-for (let i = 0; i < 20; i++) {
-  const id = uuid()
-  initial.byId[id] ={ id, value: `test ${i}`, done: false, listId: 'x' }
-  initial.allIds.push(id)
-}
-initial = fromJS(initial)
 
 export default (state = initial, action) => {
   switch(action.type) {
     case TASK_CREATE:
       const task = {
         done: false,
-        id: uuid(),
+        id: action.id,
         listId: action.listId,
-        value: action.data
+        value: action.value
       }
 
       return state

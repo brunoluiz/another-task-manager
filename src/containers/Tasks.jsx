@@ -1,8 +1,8 @@
-import { connect } from 'react-redux'
-
 import * as tasks from '../modules/tasks'
 import * as ui from '../modules/ui'
 import Tasks from '../components/Tasks'
+import uuid from 'uuid/v4'
+import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   const listId = state.ui.get('activeList')
@@ -48,7 +48,8 @@ const mapDispatchToProps = (dispatch, props) => ({
 
     return dispatch(tasks.doCreate({
       value,
-      listId
+      listId,
+      id: uuid()
     }))
   },
   onDelete: (id) => dispatch(
