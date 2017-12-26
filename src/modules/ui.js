@@ -12,6 +12,7 @@ export const SET_UPDATABLE_TASK = 'app/ui/SET_UPDATABLE_TASK'
 const initial = fromJS({
   activeList: 'x',
   updatableTask: null,
+  updatableList: null,
   collapsedMenu: false,
   showModal: false
 })

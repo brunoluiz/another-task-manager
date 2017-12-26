@@ -6,17 +6,8 @@ import {
   List
 } from 'antd'
 
-const createAction = (props) =>
-  <Icon
-    type='plus'
-  />
-
 export default (props) => (
-  <List.Item
-    actions={[
-      createAction(props)
-    ]}
-  >
+  <List.Item>
     <Input
       onChange={props.onChange}
       onKeyPress={(e) => props.onCreate(e, props.listId)}

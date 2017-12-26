@@ -33,7 +33,8 @@
 .header {
   background: #fff;
   padding: 0;
-  display: flex
+  display: flex;
+  border-bottom: 1px solid #ddd;
 }
 
 .header > strong {
