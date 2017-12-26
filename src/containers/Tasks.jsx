@@ -55,12 +55,14 @@ const mapDispatchToProps = (dispatch, props) => ({
   onDelete: (id) => dispatch(
     tasks.doDelete(id)
   ),
-  onUpdate: (e, id) => dispatch(
-    tasks.doUpdate({
-      id,
-      value: e.target.value
-    })
-  ),
+  onUpdate: (e, id) => (e.key === 'Enter')
+    ? dispatch(ui.doSetUpdatableTask(null))
+    : dispatch(tasks.doUpdate({
+        id,
+        value: e.target.value
+      })
+    )
+  ,
   onToogle: (e) => dispatch(
     tasks.doToogle(e.target.value)
   ),

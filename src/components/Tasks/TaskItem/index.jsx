@@ -27,7 +27,11 @@ const itemStyle = (props) => {
 
 const textValue = (props) => props.updatableTask === props.id
   ? (
-    <Input value={props.value} onChange={(e) => props.onUpdate(e, props.id)}/>
+    <Input
+      value={props.value}
+      onChange={(e) => props.onUpdate(e, props.id)}
+      onKeyPress={(e) => props.onUpdate(e, props.id)}
+    />
   ) : (
     <span className={style.text}>{ props.value }</span>
   )
