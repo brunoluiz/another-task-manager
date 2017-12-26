@@ -8,7 +8,7 @@ export const CHECKLIST_DELETE = 'app/lists/DELETE'
 export const CHECKLIST_UPDATE = 'app/lists/UPDATE'
 
 export const doCreate = data => ({ type: CHECKLIST_CREATE, ...data })
-export const doDelete = ({ id }) => ({ type: CHECKLIST_DELETE, id })
+export const doDelete = id => ({ type: CHECKLIST_DELETE, id })
 export const doUpdate = data => ({ type: CHECKLIST_UPDATE, ...data })
 
 const initial = fromJS({
