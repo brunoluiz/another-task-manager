@@ -2,10 +2,12 @@
   "name": "the-repeatable-lists",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://brunoluiz.github.io/the-repeatable-lists",
   "dependencies": {
     "antd": "^3.0.2",
     "babel-plugin-import": "^1.6.3",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^1.1.0",
     "immutable": "^3.8.2",
     "node-sass": "^4.7.2",
     "normalize.css": "^7.0.0",
@@ -26,6 +28,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
