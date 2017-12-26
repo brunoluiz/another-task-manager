@@ -47,9 +47,9 @@ const mapDispatchToProps = (dispatch, props) => ({
     e.target.value = '' // Reset input field value
 
     return dispatch(tasks.doCreate({
-      value,
+      id: uuid(),
       listId,
-      id: uuid()
+      value
     }))
   },
   onDelete: (id) => dispatch(

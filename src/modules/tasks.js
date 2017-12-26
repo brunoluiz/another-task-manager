@@ -11,11 +11,7 @@ export const TASK_UPDATE = 'app/tasks/TASK_UPDATE'
 export const doCreate = data => ({ type: TASK_CREATE, ...data })
 export const doDelete = data => ({ type: TASK_DELETE, id: data })
 export const doToogle = data => ({ type: TASK_TOOGLE, id: data })
-export const doUpdate = data => ({
-  type: TASK_UPDATE,
-  data: data.value,
-  id: data.id
-})
+export const doUpdate = data => ({ type: TASK_UPDATE, ...data })
 
 let initial = fromJS({
   byId: {},
@@ -45,7 +41,7 @@ export default (state = initial, action) => {
 
     case TASK_UPDATE:
       return state
-        .setIn(['byId', action.id, 'value'], action.data)
+        .setIn(['byId', action.id, 'value'], action.value)
 
     case TASK_TOOGLE:
       return state.updateIn(['byId', action.id], (tasks) => {
