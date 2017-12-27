@@ -18,7 +18,7 @@ export default (props) => (
     collapsedWidth={0}
     collapsible
     trigger={null}
-    width={250}
+    width={300}
   >
     <div className={style.logo} />
     <ChecklistList
