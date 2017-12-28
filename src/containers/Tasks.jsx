@@ -1,5 +1,5 @@
-import * as tasks from '../modules/tasks'
-import * as ui from '../modules/ui'
+import { actions as tasks } from '../modules/tasks'
+import { actions as ui } from '../modules/ui'
 import Tasks from '../components/Tasks'
 import uuid from 'uuid/v4'
 import { connect } from 'react-redux'
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
   const uiActiveTasks = sortedTasks
     .reduce((acc, task) => {
       // Filter tasks which are not on the actual list
-      if (task.get('listId') !== listId) return acc
+      if (!task || task.get('listId') !== listId) return acc
 
       // Maybe a bottleneck will be the toJS()
       return task.get('done')

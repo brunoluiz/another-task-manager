@@ -1,0 +1,6 @@
+export const UPDATE_ACTIVELIST = 'app/ui/UPDATE_ACTIVELIST'
+export const SHOW_UPDATE_MODAL = 'app/ui/SHOW_UPDATE_MODAL'
+export const SHOW_CREATE_MODAL = 'app/ui/SHOW_CREATE_MODAL'
+export const HIDE_MODAL = 'app/ui/HIDE_MODAL'
+export const TOGGLE_MENUBAR = 'app/ui/CHANGE_ACTIVELIST'
+export const SET_UPDATABLE_TASK = 'app/ui/SET_UPDATABLE_TASK'

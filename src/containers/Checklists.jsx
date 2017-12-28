@@ -1,5 +1,5 @@
-import * as lists from '../modules/lists'
-import * as ui from '../modules/ui'
+import { actions as lists } from '../modules/lists'
+import { actions as ui } from '../modules/ui'
 import Checklists from '../components/Checklists'
 import uuid from 'uuid/v4'
 import { connect } from 'react-redux'

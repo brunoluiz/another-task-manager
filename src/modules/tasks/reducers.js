@@ -1,23 +1,12 @@
+import * as types from './types'
+import { types as listsTypes } from '../lists'
 import { Map, fromJS } from 'immutable'
-import {
-  CHECKLIST_DELETE
-} from './lists'
-
-export const TASK_TOOGLE = 'app/tasks/TASK_TOOGLE'
-export const TASK_CREATE = 'app/tasks/TASK_CREATE'
-export const TASK_DELETE = 'app/tasks/TASK_DELETE'
-export const TASK_UPDATE = 'app/tasks/TASK_UPDATE'
-
-export const doCreate = data => ({ type: TASK_CREATE, ...data })
-export const doDelete = data => ({ type: TASK_DELETE, id: data })
-export const doToogle = data => ({ type: TASK_TOOGLE, id: data })
-export const doUpdate = data => ({ type: TASK_UPDATE, ...data })
 
 const initial = fromJS({ byId: {}, allIds: [] })
 
 export default (state = initial, action) => {
   switch (action.type) {
-    case TASK_CREATE:
+    case types.TASK_CREATE:
       return state
         .setIn(['byId', action.id], Map({
           done: false,
@@ -27,18 +16,18 @@ export default (state = initial, action) => {
         }))
         .updateIn(['allIds'], (arr) => arr.push(action.id))
 
-    case TASK_DELETE:
+    case types.TASK_DELETE:
       return state
         .deleteIn(['byId', action.id])
         .updateIn(['allIds'], (arr) => arr.delete(
           arr.findIndex((id) => id === action.id)
         ))
 
-    case TASK_UPDATE:
+    case types.TASK_UPDATE:
       return state
         .setIn(['byId', action.id, 'value'], action.value)
 
-    case TASK_TOOGLE:
+    case types.TASK_TOOGLE:
       return state.updateIn(['byId', action.id], (tasks) => {
         const done = tasks.get('done')
 
@@ -46,7 +35,7 @@ export default (state = initial, action) => {
       })
 
     // TODO: For sure this should be refactored... it doesn't perform well
-    case CHECKLIST_DELETE:
+    case listsTypes.CHECKLIST_DELETE:
       return state
         .get('byId')
         .reduce((acc, item) => {
@@ -65,3 +54,4 @@ export default (state = initial, action) => {
       return state
   }
 }
+
