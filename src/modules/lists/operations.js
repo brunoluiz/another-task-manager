@@ -32,8 +32,8 @@ export function* deleteList ({ data }) {
 }
 
 export const watchers = [
-  takeEvery(types.CHECKLIST_CREATE, saveList),
-  takeEvery(types.CHECKLIST_DELETE, deleteList),
-  // takeEvery(types.TASK_UPDATE, saveList)
+  takeEvery(types.CREATE, saveList),
+  takeEvery(types.DELETE, deleteList),
+  // takeEvery(types.UPDATE, saveList)
 ]
 

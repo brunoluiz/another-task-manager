@@ -16,7 +16,7 @@ export default (state = initial, action) => {
       return state
         .set('isLoading', false)
 
-    case types.TASK_CREATE:
+    case types.CREATE:
       return state
         .setIn(['byId', data.id], Map({
           done: false,
@@ -26,18 +26,18 @@ export default (state = initial, action) => {
         }))
         .updateIn(['allIds'], (arr) => arr.push(data.id))
 
-    case types.TASK_DELETE:
+    case types.DELETE:
       return state
         .deleteIn(['byId', data.id])
         .updateIn(['allIds'], (arr) => arr.delete(
           arr.findIndex((id) => id === data.id)
         ))
 
-    case types.TASK_UPDATE:
+    case types.UPDATE:
       return state
         .setIn(['byId', data.id, 'value'], data.value)
 
-    case types.TASK_TOOGLE:
+    case types.TOOGLE:
       return state.updateIn(['byId', data.id], (tasks) => {
         const done = tasks.get('done')
 
@@ -45,7 +45,7 @@ export default (state = initial, action) => {
       })
 
     // TODO: For sure this should be refactored... it doesn't perform well
-    case listsTypes.CHECKLIST_DELETE:
+    case listsTypes.DELETE:
       return state
         .get('byId')
         .reduce((acc, item) => {

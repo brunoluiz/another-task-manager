@@ -42,10 +42,10 @@ export default (state = initial, action) => {
       return state
         .set('updatableTask', data.id)
 
-    case listsTypes.CHECKLIST_CREATE:
+    case listsTypes.CREATE:
       return state.set('activeList', data.id)
 
-    case listsTypes.CHECKLIST_DELETE:
+    case listsTypes.DELETE:
       return (data.id === state.get('activeList'))
         ? state.set('activeList', null)
         : state

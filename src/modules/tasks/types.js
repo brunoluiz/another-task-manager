@@ -1,7 +1,10 @@
-export const TASK_TOOGLE = 'app/tasks/TASK_TOOGLE'
-export const TASK_CREATE = 'app/tasks/TASK_CREATE'
-export const TASK_DELETE = 'app/tasks/TASK_DELETE'
-export const TASK_UPDATE = 'app/tasks/TASK_UPDATE'
-export const FETCHING = 'app/tasks/FETCHING'
-export const FETCHED = 'app/tasks/FETCHED'
-export const FETCH_FAILED = 'app/tasks/FETCH_FAILED'
+const namespace = 'app/tasks'
+const define = (str) => `${namespace}/${str}`
+
+export const TOOGLE = define('TOOGLE')
+export const CREATE = define('CREATE')
+export const DELETE = define('DELETE')
+export const UPDATE = define('UPDATE')
+export const FETCHING = define('FETCHING')
+export const FETCHED = define('FETCHED')
+export const FETCH_FAILED = define('FETCH_FAILED')

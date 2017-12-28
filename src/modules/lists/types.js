@@ -1,3 +1,6 @@
-export const CHECKLIST_CREATE = 'app/lists/CREATE'
-export const CHECKLIST_DELETE = 'app/lists/DELETE'
-export const CHECKLIST_UPDATE = 'app/lists/UPDATE'
+const namespace = 'app/lists'
+const define = (str) => `${namespace}/${str}`
+
+export const CREATE = define('CREATE')
+export const DELETE = define('DELETE')
+export const UPDATE = define('UPDATE')

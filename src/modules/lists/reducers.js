@@ -7,21 +7,21 @@ export default (state = initial, action) => {
   const { type, data } = action
 
   switch (type) {
-    case types.CHECKLIST_CREATE:
+    case types.CREATE:
       const list = { id: data.id, name: data.name }
 
       return state
         .setIn(['byId', list.id], Map(list))
         .updateIn(['allIds'], (arr) => arr.push(list.id))
 
-    case types.CHECKLIST_DELETE:
+    case types.DELETE:
       return state
         .deleteIn(['byId', data.id])
         .updateIn(['allIds'], (arr) => arr.delete(
           arr.findIndex((id) => id === data.id)
         ))
 
-    case types.CHECKLIST_UPDATE:
+    case types.UPDATE:
       return state
         .setIn(['byId', data.id, 'name'], data.name)
 

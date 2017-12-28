@@ -31,7 +31,7 @@ export function* deleteTask ({ data }) {
 }
 
 export const watchers = [
-  takeEvery(types.TASK_CREATE, saveTask),
-  takeEvery(types.TASK_DELETE, deleteTask),
-  // takeEvery(types.TASK_UPDATE, saveTask)
+  takeEvery(types.CREATE, saveTask),
+  takeEvery(types.DELETE, deleteTask),
+  // takeEvery(types.UPDATE, saveTask)
 ]
