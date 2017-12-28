@@ -19,6 +19,7 @@
     "react-scripts": "^1.0.17",
     "react-scripts-cssmodules": "^1.0.171",
     "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
     "sass-loader": "^6.0.6",
     "standardjs": "^1.0.0",
     "uuid": "^3.1.0"
