@@ -5,6 +5,7 @@ import * as types from './types'
 
 export {
   actions,
+  reducer,
   types
 }
 
