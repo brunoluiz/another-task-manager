@@ -2,33 +2,43 @@ import * as types from './types'
 import { types as listsTypes } from '../lists'
 import { Map, fromJS } from 'immutable'
 
-const initial = fromJS({ byId: {}, allIds: [] })
+const initial = fromJS({ isLoading: true, byId: {}, allIds: [] })
 
 export default (state = initial, action) => {
-  switch (action.type) {
+  const { type, data } = action
+
+  switch (type) {
+    case types.FETCHING:
+      return state
+        .set('isLoading', true)
+
+    case types.FETCHED:
+      return state
+        .set('isLoading', false)
+
     case types.TASK_CREATE:
       return state
-        .setIn(['byId', action.id], Map({
+        .setIn(['byId', data.id], Map({
           done: false,
-          id: action.id,
-          listId: action.listId,
-          value: action.value
+          id: data.id,
+          listId: data.listId,
+          value: data.value
         }))
-        .updateIn(['allIds'], (arr) => arr.push(action.id))
+        .updateIn(['allIds'], (arr) => arr.push(data.id))
 
     case types.TASK_DELETE:
       return state
-        .deleteIn(['byId', action.id])
+        .deleteIn(['byId', data.id])
         .updateIn(['allIds'], (arr) => arr.delete(
-          arr.findIndex((id) => id === action.id)
+          arr.findIndex((id) => id === data.id)
         ))
 
     case types.TASK_UPDATE:
       return state
-        .setIn(['byId', action.id, 'value'], action.value)
+        .setIn(['byId', data.id, 'value'], data.value)
 
     case types.TASK_TOOGLE:
-      return state.updateIn(['byId', action.id], (tasks) => {
+      return state.updateIn(['byId', data.id], (tasks) => {
         const done = tasks.get('done')
 
         return tasks.set('done', !done)
@@ -40,7 +50,7 @@ export default (state = initial, action) => {
         .get('byId')
         .reduce((acc, item) => {
           const task = item.toJS()
-          if (task.listId === action.id) return acc
+          if (task.listId === data.id) return acc
 
           return state
             .setIn(['byId', task.id], Map(task))
