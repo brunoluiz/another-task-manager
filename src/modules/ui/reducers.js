@@ -13,33 +13,43 @@ const initial = fromJS({
 })
 
 export default (state = initial, action) => {
-  switch (action.type) {
+  const { data, type } = action
+
+  switch (type) {
     case types.TOGGLE_MENUBAR:
       const collapsed = state.get('collapsedMenu')
       return state.set('collapsedMenu', !collapsed)
+
     case types.SHOW_CREATE_MODAL:
       return state
         .setIn(['modal', 'createList', 'visible'], true)
+
     case types.SHOW_UPDATE_MODAL:
       return state
         .setIn(['modal', 'updateList', 'visible'], true)
-        .setIn(['modal', 'updateList', 'id'], action.id)
+        .setIn(['modal', 'updateList', 'id'], data.id)
+
     case types.HIDE_MODAL:
       return state
         .setIn(['modal', 'createList', 'visible'], false)
         .setIn(['modal', 'updateList', 'visible'], false)
+
     case types.UPDATE_ACTIVELIST:
       return state
-        .set('activeList', action.id)
+        .set('activeList', data.id)
+
     case types.SET_UPDATABLE_TASK:
       return state
-        .set('updatableTask', action.id)
+        .set('updatableTask', data.id)
+
     case listsTypes.CHECKLIST_CREATE:
-      return state.set('activeList', action.id)
+      return state.set('activeList', data.id)
+
     case listsTypes.CHECKLIST_DELETE:
-      return (action.id === state.get('activeList'))
+      return (data.id === state.get('activeList'))
         ? state.set('activeList', null)
         : state
+
     default:
       return state
   }
