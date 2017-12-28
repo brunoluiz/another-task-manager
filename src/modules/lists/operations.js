@@ -6,11 +6,11 @@ import {
   takeEvery
 } from 'redux-saga/effects'
 
-export function* fetchLists () {
+export function* fetch () {
   const x = yield lists.findByUser()
 }
 
-export function* saveList ({ data }) {
+export function* save ({ data }) {
   console.log(data)
   const { id } = yield lists.save(data)
   const user = yield users.find(data.user)
@@ -27,13 +27,13 @@ export function* saveList ({ data }) {
   yield users.save(userOut)
 }
 
-export function* deleteList ({ data }) {
+export function* destroy ({ data }) {
   yield lists.destroy(data.id)
 }
 
 export const watchers = [
-  takeEvery(types.CREATE, saveList),
-  takeEvery(types.DELETE, deleteList),
+  takeEvery(types.CREATE, save),
+  takeEvery(types.DELETE, destroy),
   // takeEvery(types.UPDATE, saveList)
 ]
 

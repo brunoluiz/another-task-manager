@@ -12,7 +12,7 @@ export const destroy = (id) =>
 
 export const findByUser = (userId) =>
   db.collection('tasks')
-    // .where('userId', '==', userId)
+    .where('userId', '==', userId)
     .get()
     .then(res => res.docs.map(item => item.data()))
     .catch((e) => {

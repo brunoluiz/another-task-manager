@@ -6,11 +6,11 @@ import {
   takeEvery
 } from 'redux-saga/effects'
 
-export function* fetchTasks () {
+export function* fetch () {
   const x = yield tasks.findByUser()
 }
 
-export function* saveTask ({ data }) {
+export function* save ({ data }) {
   const { id } = yield tasks.save(data)
   const user = yield users.find(data.user)
 
@@ -26,12 +26,12 @@ export function* saveTask ({ data }) {
   yield users.save(userOut)
 }
 
-export function* deleteTask ({ data }) {
+export function* destroy ({ data }) {
   yield tasks.destroy(data.id)
 }
 
 export const watchers = [
-  takeEvery(types.CREATE, saveTask),
-  takeEvery(types.DELETE, deleteTask),
+  takeEvery(types.CREATE, save),
+  takeEvery(types.DELETE, destroy),
   // takeEvery(types.UPDATE, saveTask)
 ]
