@@ -1,4 +1,5 @@
 import tasks from '../../repositories/tasks-repository'
+import users from '../../repositories/users-repository'
 import * as types from './types'
 import {
   put,
@@ -10,7 +11,19 @@ export function* fetchTasks () {
 }
 
 export function* saveTask ({ data }) {
-  yield tasks.save(data)
+  const { id } = yield tasks.save(data)
+  const user = yield users.find(data.user)
+
+  // If no user was found, create one using data.user id
+  const userOut = user
+    ? user
+    : { id: data.user }
+
+  userOut.tasks = userOut.tasks
+    ? [ ...userOut.tasks, id ]
+    : [ id ]
+
+  yield users.save(userOut)
 }
 
 export function* deleteTask ({ data }) {
@@ -20,5 +33,5 @@ export function* deleteTask ({ data }) {
 export const watchers = [
   takeEvery(types.TASK_CREATE, saveTask),
   takeEvery(types.TASK_DELETE, deleteTask),
-  takeEvery(types.TASK_UPDATE, saveTask)
+  // takeEvery(types.TASK_UPDATE, saveTask)
 ]

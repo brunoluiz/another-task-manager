@@ -49,7 +49,8 @@ const mapDispatchToProps = (dispatch, props) => ({
     return dispatch(tasks.doCreate({
       id: uuid(),
       listId,
-      value
+      value,
+      user: '99026eba-60cf-4f9e-8a12-4098c8a639e4'
     }))
   },
   onDelete: (id) => dispatch(

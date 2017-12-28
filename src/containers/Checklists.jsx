@@ -15,7 +15,8 @@ const mapDispatchToProps = (dispatch) => ({
   onCreate: (data) => {
     return dispatch(lists.doCreate({
       id: uuid(),
-      ...data
+      ...data,
+      user: '99026eba-60cf-4f9e-8a12-4098c8a639e4'
     }))
   },
   onDelete: (id) => dispatch(
