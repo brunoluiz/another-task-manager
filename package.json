@@ -4,9 +4,8 @@
   "private": true,
   "homepage": "https://brunoluiz.github.io/the-repeatable-lists",
   "dependencies": {
-    "antd": "^3.0.2",
+    "antd": "^3.0.3",
     "babel-plugin-import": "^1.6.3",
-    "font-awesome": "^4.7.0",
     "gh-pages": "^1.1.0",
     "immutable": "^3.8.2",
     "node-sass": "^4.7.2",
@@ -21,15 +20,17 @@
     "react-scripts-cssmodules": "^1.0.171",
     "redux": "^3.7.2",
     "sass-loader": "^6.0.6",
-    "standardjs": "^1.0.0-alpha",
+    "standardjs": "^1.0.0",
     "uuid": "^3.1.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
+    "deploy": "gh-pages -d build",
     "eject": "react-app-rewired eject",
+    "lint": "./node_modules/.bin/standard",
+    "lint-fix": "./node_modules/.bin/standard --fix",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "react-app-rewired start",
+    "test": "react-app-rewired test --env=jsdom"
   }
 }
