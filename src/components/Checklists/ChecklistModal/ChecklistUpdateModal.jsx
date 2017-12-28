@@ -2,6 +2,12 @@ import ChecklistModal from './ChecklistModal'
 import React from 'react'
 
 export default class extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.saveFormRef = this.saveFormRef.bind(this)
+  }
+
   handleSubmit (e) {
     e.preventDefault()
 
