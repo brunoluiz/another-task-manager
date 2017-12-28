@@ -1,17 +1,16 @@
-import React from 'react';
+import React from 'react'
 
 import style from './style.module.css'
 import TaskList from './TaskList'
 import {
   Icon,
   Layout
-} from 'antd';
+} from 'antd'
 
 const {
   Content,
-  Footer,
   Header
-} = Layout;
+} = Layout
 
 const TasksLayout = (props) => (
   <Layout>
@@ -31,7 +30,7 @@ const TasksLayout = (props) => (
 
 export default (props) => {
   const content = props.list
-    ? <TaskList {...props}/>
+    ? <TaskList {...props} />
     : null
   return (
     <TasksLayout {...props}>
@@ -39,4 +38,3 @@ export default (props) => {
     </TasksLayout>
   )
 }
-

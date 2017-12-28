@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 
 import ChecklistList from './ChecklistList'
 import style from './style.module.css'
 import {
   Layout
-} from 'antd';
+} from 'antd'
 
 const {
   Sider
-} = Layout;
+} = Layout
 
 export default (props) => (
   <Sider

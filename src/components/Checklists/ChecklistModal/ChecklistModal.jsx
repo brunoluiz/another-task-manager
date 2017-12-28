@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import {
   Form,
@@ -26,10 +26,7 @@ export default Form.create({
     visible
   } = props
 
-  const {
-    getFieldDecorator,
-    setFieldsValue
-  } = form;
+  const { getFieldDecorator } = form
 
   const items = (
     <Form.Item>
@@ -55,7 +52,7 @@ export default Form.create({
         layout='vertical'
         onSubmit={onOk}
       >
-      { items }
+        { items }
       </Form>
     </Modal>
   )

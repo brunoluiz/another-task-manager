@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 import TaskCreate from '../TaskCreate'
 import TaskItem from '../TaskItem'
-import { List } from 'antd';
+import { List } from 'antd'
 
 import style from './style.module.css'
 
@@ -31,10 +31,9 @@ export default (props) => {
       itemLayout='horizontal'
     >
       <div style={{ minHeight: '101%' }}>
-      {createTask}
-      {items}
+        {createTask}
+        {items}
       </div>
     </List>
   )
 }
-

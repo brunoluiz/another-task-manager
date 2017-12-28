@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
   const uiActiveTasks = sortedTasks
     .reduce((acc, task) => {
       // Filter tasks which are not on the actual list
-      if( task.get('listId') !== listId ) return acc
+      if (task.get('listId') !== listId) return acc
 
       // Maybe a bottleneck will be the toJS()
       return task.get('done')
@@ -58,11 +58,10 @@ const mapDispatchToProps = (dispatch, props) => ({
   onUpdate: (e, id) => (e.key === 'Enter')
     ? dispatch(ui.doSetUpdatableTask(null))
     : dispatch(tasks.doUpdate({
-        id,
-        value: e.target.value
-      })
-    )
-  ,
+      id,
+      value: e.target.value
+    })
+    ),
   onToogle: (e) => dispatch(
     tasks.doToogle(e.target.value)
   ),

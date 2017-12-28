@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import style from './style.module.css'
 
@@ -11,13 +11,13 @@ import {
 
 const updateAction = (props) => props.updatableTask === props.id
   ? (
-    <Icon onClick={() => props.onSetUpdatable(null)} type='check'/>
+    <Icon onClick={() => props.onSetUpdatable(null)} type='check' />
   ) : (
-    <Icon onClick={() => props.onSetUpdatable(props.id)} type='edit'/>
+    <Icon onClick={() => props.onSetUpdatable(props.id)} type='edit' />
   )
 
 const deleteAction = (props) => (
-  <Icon onClick={() => props.onDelete(props.id)} type='delete'/>
+  <Icon onClick={() => props.onDelete(props.id)} type='delete' />
 )
 
 const itemStyle = (props) => {
@@ -67,4 +67,3 @@ export default (props) => (
     </div>
   </List.Item>
 )
-

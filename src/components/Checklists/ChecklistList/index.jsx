@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import {
   ChecklistCreateModal,
@@ -8,23 +8,23 @@ import style from './style.module.css'
 import {
   Affix,
   Icon,
-  Menu,
+  Menu
 } from 'antd'
 
 export default (props) => {
   const lists = props.lists.byId
   const items = Object.keys(lists)
     .map(id =>
-    <Menu.Item key={id}>
-      <Icon type='bars' />
-      <span className={style.textWrap}>
-        <span>{lists[id].name}</span>
-      </span>
-      <Affix className={style.actions}>
-        <Icon type='edit' onClick={() => props.onEditClick(id)}/>
-        <Icon type='delete' onClick={() => props.onDelete(id)}/>
-      </Affix>
-    </Menu.Item>
+      <Menu.Item key={id}>
+        <Icon type='bars' />
+        <span className={style.textWrap}>
+          <span>{lists[id].name}</span>
+        </span>
+        <Affix className={style.actions}>
+          <Icon type='edit' onClick={() => props.onEditClick(id)} />
+          <Icon type='delete' onClick={() => props.onDelete(id)} />
+        </Affix>
+      </Menu.Item>
   )
 
   const createButton = (

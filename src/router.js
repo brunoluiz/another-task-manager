@@ -9,7 +9,7 @@ import {
 export default (
   <Router>
     <div>
-      <Route exact path='/' component={App}/>
+      <Route exact path='/' component={App} />
     </div>
   </Router>
 )

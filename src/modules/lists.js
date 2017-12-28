@@ -1,7 +1,4 @@
 import { Map, fromJS } from 'immutable'
-import {
-  UPDATE_ACTIVELIST
-} from './ui.js'
 
 export const CHECKLIST_CREATE = 'app/lists/CREATE'
 export const CHECKLIST_DELETE = 'app/lists/DELETE'
@@ -14,7 +11,7 @@ export const doUpdate = data => ({ type: CHECKLIST_UPDATE, ...data })
 const initial = fromJS({ byId: {}, allIds: [] })
 
 export default (state = initial, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case CHECKLIST_CREATE:
       const list = { id: action.id, name: action.name }
 

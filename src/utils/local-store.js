@@ -1,6 +1,6 @@
 export const getState = (key) => {
   try {
-    const state = localStorage.getItem('state')
+    const state = window.localStorage.getItem('state')
 
     const data = (state)
       ? JSON.parse(state)

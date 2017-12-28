@@ -2,7 +2,7 @@ import ChecklistModal from './ChecklistModal'
 import React from 'react'
 
 export default class extends React.Component {
-  handleSubmit = (e) => {
+  handleSubmit (e) {
     e.preventDefault()
 
     this.form.validateFields((err, values) => {
@@ -17,11 +17,11 @@ export default class extends React.Component {
     })
   }
 
-  saveFormRef = (form) => {
+  saveFormRef (form) {
     this.form = form
   }
 
-  render() {
+  render () {
     return (
       <ChecklistModal
         onCancel={this.props.onHide}

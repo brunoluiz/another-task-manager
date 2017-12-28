@@ -16,7 +16,7 @@ export const doUpdate = data => ({ type: TASK_UPDATE, ...data })
 const initial = fromJS({ byId: {}, allIds: [] })
 
 export default (state = initial, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case TASK_CREATE:
       return state
         .setIn(['byId', action.id], Map({
@@ -42,7 +42,7 @@ export default (state = initial, action) => {
       return state.updateIn(['byId', action.id], (tasks) => {
         const done = tasks.get('done')
 
-        return tasks.set('done', !done);
+        return tasks.set('done', !done)
       })
 
     // TODO: For sure this should be refactored... it doesn't perform well
@@ -65,4 +65,3 @@ export default (state = initial, action) => {
       return state
   }
 }
-

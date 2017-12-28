@@ -28,7 +28,7 @@ const initial = fromJS({
 })
 
 export default (state = initial, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case TOGGLE_MENUBAR:
       const collapsed = state.get('collapsedMenu')
       return state.set('collapsedMenu', !collapsed)
