@@ -6,6 +6,7 @@
   "dependencies": {
     "antd": "^3.0.3",
     "babel-plugin-import": "^1.6.3",
+    "firebase": "^4.8.1",
     "gh-pages": "^1.1.0",
     "immutable": "^3.8.2",
     "node-sass": "^4.7.2",
