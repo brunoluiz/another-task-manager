@@ -10,20 +10,21 @@ const mapStateToProps = (state) => ({
   lists: state.lists.toJS(),
   modal: state.ui.get('modal').toJS()
 })
+const user = '99026eba-60cf-4f9e-8a12-4098c8a639e4'
 
 const mapDispatchToProps = (dispatch) => ({
   onCreate: (data) => {
     return dispatch(lists.doCreate({
       id: uuid(),
       ...data,
-      user: '99026eba-60cf-4f9e-8a12-4098c8a639e4'
+      user
     }))
   },
   onDelete: (id) => dispatch(
     lists.doDelete(id)
   ),
   onUpdate: (data) => dispatch(
-    lists.doUpdate(data)
+    lists.doUpdate({ user, ...data })
   ),
   onEditClick: (id) => dispatch(
     ui.doShowUpdateModal({ id })
