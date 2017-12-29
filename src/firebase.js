@@ -10,4 +10,5 @@ const config = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID
 }
 
-export default firebase.initializeApp(config)
+firebase.initializeApp(config)
+firebase.firestore().enablePersistence()

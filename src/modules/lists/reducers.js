@@ -7,6 +7,16 @@ export default (state = initial, action) => {
   const { type, data } = action
 
   switch (type) {
+    case types.FETCHING:
+      return state
+        .set('isLoading', true)
+
+    case types.FETCHED:
+      return state
+        .set('byId', fromJS(data.byId))
+        .set('allIds', fromJS(data.allIds))
+        .set('isLoading', false)
+
     case types.CREATE:
       const list = { id: data.id, name: data.name }
 

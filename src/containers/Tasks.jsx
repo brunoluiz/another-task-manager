@@ -50,6 +50,7 @@ const mapDispatchToProps = (dispatch, props) => ({
       id: uuid(),
       listId,
       value,
+      done: false,
       user: '99026eba-60cf-4f9e-8a12-4098c8a639e4'
     }))
   },

@@ -14,6 +14,8 @@ export default (state = initial, action) => {
 
     case types.FETCHED:
       return state
+        .set('byId', fromJS(data.byId))
+        .set('allIds', fromJS(data.allIds))
         .set('isLoading', false)
 
     case types.CREATE:
