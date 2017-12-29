@@ -14,11 +14,15 @@ const user = '99026eba-60cf-4f9e-8a12-4098c8a639e4'
 
 const mapDispatchToProps = (dispatch) => ({
   onCreate: (data) => {
-    return dispatch(lists.doCreate({
+    dispatch(lists.doCreate({
       id: uuid(),
       ...data,
       user
     }))
+
+    if (window.outerWidth < 480) {
+      dispatch(ui.doToggleMenubar())
+    }
   },
   onDelete: (id) => dispatch(
     lists.doDelete(id)
@@ -35,6 +39,10 @@ const mapDispatchToProps = (dispatch) => ({
     }
 
     dispatch(ui.doUpdateActiveList(key))
+
+    if (window.outerWidth < 480) {
+      dispatch(ui.doToggleMenubar())
+    }
   },
   onHideModal: () => dispatch(
     ui.doHideModal()
