@@ -1,9 +1,12 @@
-import React, { Component } from 'react'
-
 import AppLayout from '../components/AppLayout'
+import React from 'react'
+import { actions as ui } from '../modules/ui'
+import { connect } from 'react-redux'
 
-export default class App extends Component {
-  render () {
-    return (<AppLayout / >)
-  }
-}
+const mapStateToProps = (state) => ({
+  isLoading: state.ui.get('isLoading')
+})
+
+export default connect(
+  mapStateToProps
+)(AppLayout)

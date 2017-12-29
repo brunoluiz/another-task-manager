@@ -48,7 +48,6 @@ export function* destroy ({ data }) {
 }
 
 export const watchers = [
-  call(fetchByUser),
   takeEvery(types.CREATE, save),
   takeEvery(types.DELETE, destroy),
   // takeEvery(types.UPDATE, saveList)
