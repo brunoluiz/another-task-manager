@@ -50,5 +50,5 @@ export function* destroy ({ data }) {
 export const watchers = [
   takeEvery(types.CREATE, save),
   takeEvery(types.DELETE, destroy),
-  // takeEvery(types.UPDATE, saveTask)
+  takeEvery(types.UPDATE_ASYNC, save)
 ]

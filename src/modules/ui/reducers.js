@@ -1,6 +1,7 @@
 import * as types from './types'
 import { fromJS } from 'immutable'
 import { types as listsTypes } from '../lists'
+import { types as tasksTypes } from '../tasks'
 
 const initial = fromJS({
   activeList: null,
@@ -48,6 +49,10 @@ export default (state = initial, action) => {
     case types.SET_UPDATABLE_TASK:
       return state
         .set('updatableTask', data.id)
+
+    case tasksTypes.UPDATE_ASYNC:
+      return state
+        .set('updatableTask', null)
 
     case listsTypes.CREATE:
       return state.set('activeList', data.id)

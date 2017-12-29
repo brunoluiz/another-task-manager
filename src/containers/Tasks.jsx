@@ -38,6 +38,8 @@ const mapStateToProps = (state) => {
   }
 }
 
+const user = '99026eba-60cf-4f9e-8a12-4098c8a639e4'
+
 const mapDispatchToProps = (dispatch, props) => ({
   onCreate: (e, listId) => {
     if (e.key !== 'Enter') return
@@ -51,18 +53,15 @@ const mapDispatchToProps = (dispatch, props) => ({
       listId,
       value,
       done: false,
-      user: '99026eba-60cf-4f9e-8a12-4098c8a639e4'
+      user
     }))
   },
   onDelete: (id) => dispatch(
     tasks.doDelete(id)
   ),
   onUpdate: (e, id) => (e.key === 'Enter')
-    ? dispatch(ui.doSetUpdatableTask(null))
-    : dispatch(tasks.doUpdate({
-      id,
-      value: e.target.value
-    })
+    ? dispatch(tasks.doUpdateAsync({ id, value: e.target.value, user }))
+    : dispatch(tasks.doUpdate({ id, value: e.target.value })
     ),
   onToogle: (e) => dispatch(
     tasks.doToogle(e.target.value)
