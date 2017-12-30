@@ -3,13 +3,13 @@ import 'normalize.css'
 import './firebase'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './containers/App.jsx'
+import Router from './router'
 import store from './store'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router />
   </Provider>,
   document.getElementById('root')
 )
