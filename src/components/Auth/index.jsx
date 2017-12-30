@@ -15,7 +15,12 @@ export default (props) =>
       <Icon type='profile' className={style.logo}/>
       <h1>ANOTHER TASK MANAGER</h1>
       <ul className={style.buttons}>
-        <li><Button icon='google'>Login With Google</Button></li>
+        <li>
+          <Button
+            icon='google'
+            onClick={props.onAuth}
+          >Login With Google</Button>
+        </li>
       </ul>
     </div>
   </div>

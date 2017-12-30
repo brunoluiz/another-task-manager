@@ -1,5 +1,5 @@
 import App from './containers/App.jsx'
-import Auth from './components/Auth/index.jsx'
+import Auth from './containers/Auth.jsx'
 import React from 'react'
 
 import {
