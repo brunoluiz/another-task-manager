@@ -1,4 +1,4 @@
-import Auth from '../components/Auth'
+import Route from '../components/Route'
 import { actions as auth } from '../modules/auth'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -11,11 +11,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onAuth: () => dispatch(auth.doAuth())
-})
-
 export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Auth))
+  mapStateToProps
+)(Route))
+
