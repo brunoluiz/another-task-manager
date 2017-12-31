@@ -37,7 +37,7 @@ export default (props) => {
   const createModal = (
     <ChecklistCreateModal
       onHide={props.onHideModal}
-      onCreate={props.onCreate}
+      onCreate={(data) => props.onCreate(data, props.user)}
       visible={props.modal.createList.visible}
     />
   )

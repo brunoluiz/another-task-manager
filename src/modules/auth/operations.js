@@ -1,7 +1,10 @@
 import firebase from 'firebase'
 import users from '../../repositories/users-repository'
+import { actions as lists } from '../lists'
+import { actions as tasks } from '../tasks'
 import * as types from './types'
 import {
+  all,
   call,
   put,
   takeEvery
@@ -18,9 +21,25 @@ const firebaseAuth = () => new Promise((resolve, reject) =>
 export function* isLoggedIn () {
   const user = yield firebaseAuth()
 
-  if (user) {
-    yield put({ type: types.AUTH_SUCCESS, data: user })
+  if (!user) return
+
+  const data = {
+    name: user.displayName,
+    email: user.email,
+    photoURL: user.photoURL,
+    id: user.uid
   }
+
+  yield put({ type: types.AUTH_SUCCESS, data })
+
+  yield all([
+    put(lists.doFetch({ user: user.uid })),
+    put(tasks.doFetch({ user: user.uid }))
+  ])
+}
+
+export function* save (data) {
+
 }
 
 export function* auth () {
@@ -44,7 +63,6 @@ export function* auth () {
       yield users.save(data)
     }
 
-  console.log(firebase.auth().currentUser)
   } catch (e) {
     yield put({ type: types.AUTH_FAILURE })
   }

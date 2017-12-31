@@ -8,11 +8,11 @@ export default (state = initial, action) => {
   const { type, data } = action
 
   switch (type) {
-    case types.FETCHING:
+    case types.FETCH:
       return state
         .set('isLoading', true)
 
-    case types.FETCHED:
+    case types.FETCH_SUCCESS:
       return state
         .set('byId', fromJS(data.byId))
         .set('allIds', fromJS(data.allIds))

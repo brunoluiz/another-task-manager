@@ -21,8 +21,6 @@ export default (props) => (
     width={300}
   >
     <div className={style.logo} />
-    <ChecklistList
-      {...props}
-    />
+    <ChecklistList {...props} />
   </Sider>
 )

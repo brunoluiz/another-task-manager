@@ -7,27 +7,26 @@ import {
   takeEvery
 } from 'redux-saga/effects'
 
-export function* fetchByUser () {
+export function* fetchByUser ({ data }) {
   try {
-    yield put({ type: types.FETCHING })
-
-    const data = yield lists.findByUser('99026eba-60cf-4f9e-8a12-4098c8a639e4')
-    const normalized = data.reduce((acc, item) => {
+    const res = yield lists.findByUser(data.user)
+    const normalized = res.reduce((acc, item) => {
       acc.byId[item.id] = item
       acc.allIds.push(item.id)
       return acc
     }, { byId: {}, allIds: [] })
 
     yield put({
-      type: types.FETCHED,
+      type: types.FETCH_SUCCESS,
       data: normalized
     })
   } catch (e) {
-    yield put({ type: types.FETCH_FAILED })
+    yield put({ type: types.FETCH_FAILURE })
   }
 }
 
 export function* save ({ data }) {
+  console.log(data)
   const { id } = yield lists.save(data)
   const user = yield users.find(data.user)
 
@@ -50,5 +49,6 @@ export function* destroy ({ data }) {
 export const watchers = [
   takeEvery(types.CREATE, save),
   takeEvery(types.DELETE, destroy),
+  takeEvery(types.FETCH, fetchByUser),
   takeEvery(types.UPDATE, save)
 ]

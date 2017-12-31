@@ -5,18 +5,13 @@ import { operations as ui } from './modules/ui'
 import { all, call } from 'redux-saga/effects'
 
 export default function* rootSaga () {
-  yield call(auth.isLoggedIn)
-
   yield all([
     ...auth.watchers,
     ...lists.watchers,
     ...tasks.watchers,
   ])
 
-  yield all([
-    call(lists.fetchByUser),
-    call(tasks.fetchByUser)
-  ])
+  yield call(auth.isLoggedIn)
 
   yield call(ui.setLoaded)
 }

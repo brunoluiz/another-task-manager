@@ -8,12 +8,12 @@ const mapStateToProps = (state) => ({
   active: state.ui.get('activeList'),
   collapsed: state.ui.get('collapsedMenu'),
   lists: state.lists.toJS(),
-  modal: state.ui.get('modal').toJS()
+  modal: state.ui.get('modal').toJS(),
+  user: state.auth.getIn(['user', 'id'])
 })
-const user = '99026eba-60cf-4f9e-8a12-4098c8a639e4'
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreate: (data) => {
+  onCreate: (data, user) => {
     dispatch(lists.doCreate({
       id: uuid(),
       ...data,
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
     lists.doDelete(id)
   ),
   onUpdate: (data) => dispatch(
-    lists.doUpdate({ user, ...data })
+    lists.doUpdate(data)
   ),
   onEditClick: (id) => dispatch(
     ui.doShowUpdateModal({ id })
