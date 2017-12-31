@@ -19,7 +19,7 @@ const firebaseAuth = () => new Promise((resolve, reject) =>
   )
 )
 
-export function* save (user) {
+export function * save (user) {
   const data = {
     email: user.email,
     id: user.uid,
@@ -32,14 +32,14 @@ export function* save (user) {
   return data
 }
 
-export function* fetchUserData (user) {
+export function * fetchUserData (user) {
   yield all([
     call(lists.fetchByUser, user),
     call(tasks.fetchByUser, user)
   ])
 }
 
-export function* isLoggedIn () {
+export function * isLoggedIn () {
   yield call(ui.notifyLoad)
 
   const user = yield firebaseAuth()
@@ -56,7 +56,7 @@ export function* isLoggedIn () {
   yield call(ui.notifyLoadSuccess)
 }
 
-export function* auth () {
+export function * auth () {
   try {
     const {
       additionalUserInfo,

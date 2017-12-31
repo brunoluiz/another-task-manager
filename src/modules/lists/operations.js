@@ -1,13 +1,9 @@
+import * as types from './types'
 import lists from '../../repositories/lists-repository'
 import users from '../../repositories/users-repository'
-import * as types from './types'
-import {
-  call,
-  put,
-  takeEvery
-} from 'redux-saga/effects'
+import { put, takeEvery } from 'redux-saga/effects'
 
-export function* fetchByUser (user) {
+export function * fetchByUser (user) {
   try {
     const res = yield lists.findByUser(user)
     const normalized = res.reduce((acc, item) => {
@@ -25,7 +21,7 @@ export function* fetchByUser (user) {
   }
 }
 
-export function* save ({ data }) {
+export function * save ({ data }) {
   const { id } = yield lists.save(data)
   const user = yield users.find(data.user)
 
@@ -36,7 +32,7 @@ export function* save ({ data }) {
   yield users.save(user)
 }
 
-export function* destroy ({ data }) {
+export function * destroy ({ data }) {
   yield lists.destroy(data.id)
 }
 

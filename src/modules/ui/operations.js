@@ -3,10 +3,10 @@ import {
   put
 } from 'redux-saga/effects'
 
-export function* notifyLoadSuccess () {
+export function * notifyLoadSuccess () {
   yield put(ui.doNotifyLoadSuccess())
 }
 
-export function* notifyLoad () {
+export function * notifyLoad () {
   yield put(ui.doLoad())
 }

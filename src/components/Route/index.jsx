@@ -16,7 +16,7 @@ export default ({
     render={(props) => {
       if (isLoggedIn && redirect) {
         return <Redirect to={{
-          pathname: redirect,
+          pathname: redirect
         }} />
       }
 
@@ -28,8 +28,8 @@ export default ({
         isAuthorized
         ? <Component {...props} />
         : <Redirect to={{
-            pathname: '/login',
-          }} />
+          pathname: '/login'
+        }} />
       )
     }}
   />

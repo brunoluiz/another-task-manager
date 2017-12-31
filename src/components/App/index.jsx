@@ -10,6 +10,6 @@ import style from './style.module.css'
 export default (props) => props.isLoading
   ? <Loading />
   : <Layout className={style.layout} >
-      <Checklists />
-      <Tasks className={style.contentLayout} />
-    </Layout>
+    <Checklists />
+    <Tasks className={style.contentLayout} />
+  </Layout>
