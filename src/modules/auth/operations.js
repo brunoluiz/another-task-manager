@@ -19,7 +19,7 @@ const firebaseAuth = () => new Promise((resolve, reject) =>
   )
 )
 
-export function* save ({ user }) {
+export function* save (user) {
   const data = {
     email: user.email,
     id: user.uid,
@@ -32,15 +32,11 @@ export function* save ({ user }) {
   return data
 }
 
-export function* fetchUserData (data) {
-  yield call(ui.notifyLoad)
-
+export function* fetchUserData (user) {
   yield all([
-    call(lists.fetchByUser, data),
-    call(tasks.fetchByUser, data)
+    call(lists.fetchByUser, user),
+    call(tasks.fetchByUser, user)
   ])
-
-  yield call(ui.notifyLoadSuccess)
 }
 
 export function* isLoggedIn () {
@@ -53,11 +49,9 @@ export function* isLoggedIn () {
     return
   }
 
-  yield call(save, { user })
+  yield call(save, user)
 
-  yield call(fetchUserData, {
-    data: { user: user.uid }
-  })
+  yield call(fetchUserData, user.uid)
 
   yield call(ui.notifyLoadSuccess)
 }
@@ -75,6 +69,9 @@ export function* auth () {
       yield users.save(data)
     }
 
+    yield call(fetchUserData, user.uid)
+
+    yield call(ui.notifyLoadSuccess)
   } catch (e) {
     yield put({ type: types.AUTH_FAILURE })
   }

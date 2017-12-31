@@ -7,9 +7,9 @@ import {
   takeEvery
 } from 'redux-saga/effects'
 
-export function* fetchByUser ({ data }) {
+export function* fetchByUser (user) {
   try {
-    const res = yield lists.findByUser(data.user)
+    const res = yield lists.findByUser(user)
     const normalized = res.reduce((acc, item) => {
       acc.byId[item.id] = item
       acc.allIds.push(item.id)
@@ -43,6 +43,5 @@ export function* destroy ({ data }) {
 export const watchers = [
   takeEvery(types.CREATE, save),
   takeEvery(types.DELETE, destroy),
-  takeEvery(types.FETCH, fetchByUser),
   takeEvery(types.UPDATE, save)
 ]
