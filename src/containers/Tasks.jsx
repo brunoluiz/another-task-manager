@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
   const updatableTask = state.ui.get('updatableTask')
   const tasks = state.tasks.get('byId')
   const taskIds = state.tasks.get('allIds')
+  const user = state.auth.getIn(['user', 'id'])
 
   const list = state.lists
       .getIn(['byId', listId])
@@ -34,14 +35,13 @@ const mapStateToProps = (state) => {
     listId,
     list: list ? list.toJS() : null,
     collapsed,
-    updatableTask
+    updatableTask,
+    user
   }
 }
 
-const user = '99026eba-60cf-4f9e-8a12-4098c8a639e4'
-
 const mapDispatchToProps = (dispatch, props) => ({
-  onCreate: (e, listId) => {
+  onCreate: (e, listId, user) => {
     if (e.key !== 'Enter') return
 
     const value = e.target.value
@@ -60,9 +60,8 @@ const mapDispatchToProps = (dispatch, props) => ({
     tasks.doDelete(id)
   ),
   onUpdate: (e, id) => (e.key === 'Enter')
-    ? dispatch(tasks.doUpdateAsync({ id, value: e.target.value, user }))
-    : dispatch(tasks.doUpdate({ id, value: e.target.value })
-    ),
+    ? dispatch(tasks.doUpdateAsync({ id, value: e.target.value }))
+    : dispatch(tasks.doUpdate({ id, value: e.target.value })),
   onToogle: (e) => dispatch(
     tasks.doToogle(e.target.value)
   ),
