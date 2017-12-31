@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import users from '../../repositories/users-repository'
 import { operations as lists } from '../lists'
 import { operations as tasks } from '../tasks'
-import { actions as ui } from '../ui'
+import { operations as ui } from '../ui'
 import * as types from './types'
 import {
   all,
@@ -32,23 +32,34 @@ export function* save ({ user }) {
   return data
 }
 
-export function* isLoggedIn () {
-  const user = yield firebaseAuth()
-
-  if (!user) return
-
-  yield call(save, { user })
-
-  const data = {
-    data: { user: user.uid }
-  }
+export function* fetchUserData (data) {
+  yield call(ui.notifyLoad)
 
   yield all([
     call(lists.fetchByUser, data),
     call(tasks.fetchByUser, data)
   ])
 
-  yield put(ui.doNotifyLoadSuccess())
+  yield call(ui.notifyLoadSuccess)
+}
+
+export function* isLoggedIn () {
+  yield call(ui.notifyLoad)
+
+  const user = yield firebaseAuth()
+
+  if (!user) {
+    yield call(ui.notifyLoadSuccess)
+    return
+  }
+
+  yield call(save, { user })
+
+  yield call(fetchUserData, {
+    data: { user: user.uid }
+  })
+
+  yield call(ui.notifyLoadSuccess)
 }
 
 export function* auth () {
