@@ -1,7 +1,8 @@
 import firebase from 'firebase'
 import users from '../../repositories/users-repository'
-import { actions as lists } from '../lists'
-import { actions as tasks } from '../tasks'
+import { operations as lists } from '../lists'
+import { operations as tasks } from '../tasks'
+import { actions as ui } from '../ui'
 import * as types from './types'
 import {
   all,
@@ -18,28 +19,36 @@ const firebaseAuth = () => new Promise((resolve, reject) =>
   )
 )
 
+export function* save ({ user }) {
+  const data = {
+    email: user.email,
+    id: user.uid,
+    name: user.displayName,
+    photoURL: user.photoURL
+  }
+
+  yield put({ type: types.AUTH_SUCCESS, data })
+
+  return data
+}
+
 export function* isLoggedIn () {
   const user = yield firebaseAuth()
 
   if (!user) return
 
+  yield call(save, { user })
+
   const data = {
-    name: user.displayName,
-    email: user.email,
-    photoURL: user.photoURL,
-    id: user.uid
+    data: { user: user.uid }
   }
 
-  yield put({ type: types.AUTH_SUCCESS, data })
-
   yield all([
-    put(lists.doFetch({ user: user.uid })),
-    put(tasks.doFetch({ user: user.uid }))
+    call(lists.fetchByUser, data),
+    call(tasks.fetchByUser, data)
   ])
-}
 
-export function* save (data) {
-
+  yield put(ui.doNotifyLoadSuccess())
 }
 
 export function* auth () {
@@ -49,15 +58,7 @@ export function* auth () {
       user
     } = yield firebase.auth().signInWithPopup(provider)
 
-    const data = {
-      name: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-      id: user.uid,
-      profile: additionalUserInfo.profile
-    }
-
-    yield put({ type: types.AUTH_SUCCESS, data })
+    const data = yield call(save, user)
 
     if (additionalUserInfo.isNewUser) {
       yield users.save(data)

@@ -12,6 +12,4 @@ export default function* rootSaga () {
   ])
 
   yield call(auth.isLoggedIn)
-
-  yield call(ui.setLoaded)
 }

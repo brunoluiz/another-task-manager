@@ -26,20 +26,14 @@ export function* fetchByUser ({ data }) {
 }
 
 export function* save ({ data }) {
-  console.log(data)
   const { id } = yield lists.save(data)
   const user = yield users.find(data.user)
 
-  // If no user was found, create one using data.user id
-  const userOut = user
-    ? user
-    : { id: data.user }
-
-  userOut.lists = userOut.lists
-    ? [ ...userOut.lists, id ]
+  user.lists = user.lists
+    ? [ ...user.lists, id ]
     : [ id ]
 
-  yield users.save(userOut)
+  yield users.save(user)
 }
 
 export function* destroy ({ data }) {

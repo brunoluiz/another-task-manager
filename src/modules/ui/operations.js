@@ -1,10 +1,8 @@
-import * as types from './types'
+import { actions as ui } from './'
 import {
   put
 } from 'redux-saga/effects'
 
 export function* setLoaded () {
-  yield put({
-    type: types.LOADED
-  })
+  yield put(ui.doNotifyLoadSuccess())
 }

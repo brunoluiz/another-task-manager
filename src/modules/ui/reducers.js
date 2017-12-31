@@ -18,10 +18,10 @@ export default (state = initial, action) => {
   const { data, type } = action
 
   switch (type) {
-    case types.LOADING:
+    case types.LOAD:
       return state.set('isLoading', true)
 
-    case types.LOADED:
+    case types.LOAD_SUCCESS:
       return state.set('isLoading', false)
 
     case types.TOGGLE_MENUBAR:
