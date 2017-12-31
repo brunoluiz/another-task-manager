@@ -5,6 +5,8 @@ import { operations as ui } from './modules/ui'
 import { all, call } from 'redux-saga/effects'
 
 export default function* rootSaga () {
+  yield call(auth.isLoggedIn)
+
   yield all([
     ...auth.watchers,
     ...lists.watchers,

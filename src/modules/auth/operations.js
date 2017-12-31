@@ -9,6 +9,20 @@ import {
 
 const provider = new firebase.auth.GoogleAuthProvider()
 
+const firebaseAuth = () => new Promise((resolve, reject) =>
+  firebase.auth().onAuthStateChanged((user, err) =>
+    err ? reject(err) : resolve(user)
+  )
+)
+
+export function* isLoggedIn () {
+  const user = yield firebaseAuth()
+
+  if (user) {
+    yield put({ type: types.AUTH_SUCCESS, data: user })
+  }
+}
+
 export function* auth () {
   try {
     const {
@@ -29,6 +43,8 @@ export function* auth () {
     if (additionalUserInfo.isNewUser) {
       yield users.save(data)
     }
+
+  console.log(firebase.auth().currentUser)
   } catch (e) {
     yield put({ type: types.AUTH_FAILURE })
   }
