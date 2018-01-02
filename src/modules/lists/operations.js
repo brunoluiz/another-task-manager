@@ -20,8 +20,6 @@ export function * fetchByUser (user) {
 }
 
 export function * save ({ data }) {
-  console.log(data)
-
   const { id } = yield lists.save(data)
   const user = yield users.find(data.user)
 

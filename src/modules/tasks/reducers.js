@@ -36,8 +36,6 @@ export default (state = initial, action) => {
         ))
 
     case types.UPDATE:
-      console.log(state.toJS().byId)
-      console.log(data.id)
       return state
         .setIn(['byId', data.id, 'value'], data.value)
 
