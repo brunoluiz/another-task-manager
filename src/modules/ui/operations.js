@@ -1,7 +1,5 @@
 import { actions as ui } from './'
-import {
-  put
-} from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 
 export function * notifyLoadSuccess () {
   yield put(ui.doNotifyLoadSuccess())

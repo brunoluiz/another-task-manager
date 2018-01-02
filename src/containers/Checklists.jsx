@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => ({
   onCreate: (data, user) => {
     dispatch(lists.doCreate({
       id: uuid(),
-      ...data,
-      user
+      user,
+      ...data
     }))
 
     if (window.outerWidth < 480) {
@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => ({
   onDelete: (id) => dispatch(
     lists.doDelete(id)
   ),
-  onUpdate: (data) => dispatch(
-    lists.doUpdate(data)
+  onUpdate: (data, user) => dispatch(
+    lists.doUpdate({ user, ...data })
   ),
   onEditClick: (id) => dispatch(
     ui.doShowUpdateModal({ id })

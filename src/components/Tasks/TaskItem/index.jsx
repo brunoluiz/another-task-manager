@@ -45,8 +45,8 @@ const textValue = (props) => props.updatableTask === props.id
   ? (
     <Input
       value={props.value}
-      onChange={(e) => props.onUpdate(e, props.id)}
-      onKeyPress={(e) => props.onUpdate(e, props.id)}
+      onChange={(e) => props.onUpdate(e, props.id, props.user)}
+      onKeyPress={(e) => props.onUpdate(e, props.id, props.user)}
     />
   ) : (
     <span className={style.text}>{ props.value }</span>

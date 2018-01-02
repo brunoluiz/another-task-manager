@@ -59,9 +59,9 @@ const mapDispatchToProps = (dispatch, props) => ({
   onDelete: (id) => dispatch(
     tasks.doDelete(id)
   ),
-  onUpdate: (e, id) => (e.key === 'Enter')
-    ? dispatch(tasks.doUpdateAsync({ id, value: e.target.value }))
-    : dispatch(tasks.doUpdate({ id, value: e.target.value })),
+  onUpdate: (e, id, user) => (e.key === 'Enter')
+    ? dispatch(tasks.doUpdateAsync({ id, value: e.target.value, user }))
+    : dispatch(tasks.doUpdate({ id, value: e.target.value, user })),
   onToogle: (e) => dispatch(
     tasks.doToogle(e.target.value)
   ),

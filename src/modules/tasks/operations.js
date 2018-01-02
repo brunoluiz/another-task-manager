@@ -1,3 +1,4 @@
+import * as actions from './actions'
 import * as types from './types'
 import tasks from '../../repositories/tasks-repository'
 import users from '../../repositories/users-repository'
@@ -6,18 +7,15 @@ import { put, takeEvery } from 'redux-saga/effects'
 export function * fetchByUser (user) {
   try {
     const res = yield tasks.findByUser(user)
-    const normalized = res.reduce((acc, item) => {
+    const data = res.reduce((acc, item) => {
       acc.byId[item.id] = item
       acc.allIds.push(item.id)
       return acc
     }, { byId: {}, allIds: [] })
 
-    yield put({
-      type: types.FETCH_SUCCESS,
-      data: normalized
-    })
+    yield put(actions.doFetchSuccess(data))
   } catch (e) {
-    yield put({ type: types.FETCH_FAILURE })
+    yield put(actions.doFetchFailure())
   }
 }
 

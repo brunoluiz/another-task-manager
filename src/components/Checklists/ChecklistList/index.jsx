@@ -45,7 +45,7 @@ export default (props) => {
   const updateModal = (
     <ChecklistUpdateModal
       onHide={props.onHideModal}
-      onUpdate={props.onUpdate}
+      onUpdate={(data) => props.onUpdate(data, props.user)}
       visible={props.modal.updateList.visible}
       data={lists[props.modal.updateList.id]}
     />
