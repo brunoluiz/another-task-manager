@@ -4,9 +4,11 @@ import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => {
   const isLoggedIn = state.auth.get('isLoggedIn')
+  const isLoading = state.ui.get('isLoading')
 
   return {
-    isLoggedIn
+    isLoggedIn,
+    isLoading
   }
 }
 

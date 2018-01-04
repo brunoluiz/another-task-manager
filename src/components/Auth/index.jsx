@@ -5,9 +5,8 @@ import { Button, Icon } from 'antd'
 
 import style from './style.module.css'
 
-export default (props) => props.isLoading
-  ? <Loading />
-  : <div className={style.auth}>
+export default (props) =>
+  <div className={style.auth}>
     <div className={style.box}>
       <Icon type='profile' className={style.logo} />
       <h1>ANOTHER TASK MANAGER</h1>

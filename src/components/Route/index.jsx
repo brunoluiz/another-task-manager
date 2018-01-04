@@ -1,4 +1,5 @@
 import React from 'react'
+import Loading from '../Loading'
 import {
   Redirect,
   Route
@@ -8,12 +9,17 @@ export default ({
   component: Component,
   isPrivate,
   isLoggedIn,
+  isLoading,
   redirect,
   ...rest
 }) =>
   <Route
     {...rest}
     render={(props) => {
+      if (isLoading) {
+        return <Loading/>
+      }
+
       if (isLoggedIn && redirect) {
         return <Redirect to={{
           pathname: redirect
