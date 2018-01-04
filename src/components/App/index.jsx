@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Checklists from '../../containers/Checklists'
-import Loading from '../Loading'
 import Tasks from '../../containers/Tasks'
 import { Layout } from 'antd'
 

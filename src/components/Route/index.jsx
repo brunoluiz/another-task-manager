@@ -17,7 +17,7 @@ export default ({
     {...rest}
     render={(props) => {
       if (isLoading) {
-        return <Loading/>
+        return <Loading />
       }
 
       if (isLoggedIn && redirect) {

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Loading from '../Loading'
 import { Button, Icon } from 'antd'
 
 import style from './style.module.css'
