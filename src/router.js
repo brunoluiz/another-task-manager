@@ -10,8 +10,8 @@ import {
 export default () =>
   <Router>
     <div>
-      <Route isPublic path='/' component={Auth} redirect='/tasks' />
-      <Route isPublic path='/login' component={Auth} redirect='/tasks' />
-      <Route isPrivate path='/tasks' component={App} />
+      <Route isPublic exact path='/' component={Auth} redirect='/tasks' />
+      <Route isPublic exact path='/login' component={Auth} redirect='/tasks' />
+      <Route isPrivate exact path='/tasks' component={App} />
     </div>
   </Router>
