@@ -14,6 +14,7 @@ export default ({
   ...rest
 }) =>
   <Route
+    path={`${process.env.PUBLIC_URL}/${rest.path}`}
     {...rest}
     render={(props) => {
       if (isLoading) {
