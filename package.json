@@ -2,7 +2,7 @@
   "name": "the-repeatable-lists",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://brunoluiz.github.io/the-repeatable-lists",
+  "homepage": "https://brunoluiz.github.io/another-task-manager",
   "dependencies": {
     "antd": "^3.0.3",
     "firebase": "^4.8.1",
