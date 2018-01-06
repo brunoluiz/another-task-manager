@@ -11,10 +11,12 @@ export default ({
   isLoggedIn,
   isLoading,
   redirect,
+  path,
   ...rest
 }) =>
   <Route
     {...rest}
+    path={process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/${path}` : path}
     render={(props) => {
       if (isLoading) {
         return <Loading />
