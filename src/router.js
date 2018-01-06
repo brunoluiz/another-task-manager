@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 
 export default () =>
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <div>
       <Route isPublic exact path='/' component={Auth} redirect='/tasks' />
       <Route isPublic exact path='/login' component={Auth} redirect='/tasks' />
