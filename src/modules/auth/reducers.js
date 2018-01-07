@@ -21,6 +21,11 @@ export default (state = initial, action) => {
         .set('isLoggedIn', false)
         .set('user', Map())
 
+    case types.SIGNOUT_SUCCESS:
+      return state
+        .set('isLoggedIn', false)
+        .set('user', Map())
+
     default:
       return state
   }

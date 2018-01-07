@@ -1,4 +1,4 @@
-import { actions as ui } from '../modules/ui'
+import { actions as auth } from '../modules/auth'
 import UserInfo from '../components/UserInfo'
 import { connect } from 'react-redux'
 
@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onSignOut: () => console.log('signout')
+  onSignOut: () => dispatch(auth.doSignout())
 })
 
 export default connect(

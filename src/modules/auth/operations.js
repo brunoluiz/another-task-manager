@@ -77,6 +77,17 @@ export function * auth () {
   }
 }
 
+export function * signout () {
+  try {
+    yield firebase.auth().signOut()
+    yield put({ type: types.SIGNOUT_SUCCESS })
+  } catch (e) {
+    console.log(e)
+    yield put({ type: types.SIGNOUT_FAILURE })
+  }
+}
+
 export const watchers = [
-  takeEvery(types.AUTH, auth)
+  takeEvery(types.AUTH, auth),
+  takeEvery(types.SIGNOUT, signout)
 ]
