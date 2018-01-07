@@ -1,10 +1,9 @@
 import React from 'react'
 
 import ChecklistList from './ChecklistList'
+import UserInfo from '../../containers/UserInfo'
 import style from './style.module.css'
-import {
-  Layout
-} from 'antd'
+import { Layout } from 'antd'
 
 const {
   Sider
@@ -20,7 +19,7 @@ export default (props) => (
     trigger={null}
     width={300}
   >
-    <div className={style.logo} />
+    <UserInfo />
     <ChecklistList {...props} />
   </Sider>
 )
