@@ -3,13 +3,17 @@ import { Icon } from 'antd'
 
 import style from './style.module.css'
 
-export default (props) =>
+export default ({
+  email,
+  onSignOut,
+  ...props
+}) =>
   <div className={style.user}>
-    <span>{ props.email }</span>
+    <span>{email}</span>
     <Icon
       className={style.action}
       type='poweroff'
-      onClick={props.onSignOut}
+      onClick={onSignOut}
     />
   </div>
 
