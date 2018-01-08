@@ -4,7 +4,7 @@ import React from 'react'
 import Route from './containers/Route.jsx'
 
 import {
-  HashRouter as Router
+  BrowserRouter as Router
 } from 'react-router-dom'
 
 export default () =>
