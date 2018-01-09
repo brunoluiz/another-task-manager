@@ -1,31 +1,23 @@
-import {
-  actions as tasks,
-  selectors as tasksSelectors
-} from '../modules/tasks'
 import { actions as ui } from '../modules/ui'
 import Tasks from '../components/Tasks'
 import uuid from 'uuid/v4'
 import { connect } from 'react-redux'
+import {
+  actions as tasks,
+  selectors as tasksSelectors
+} from '../modules/tasks'
 
 const mapStateToProps = (state) => {
   const listId = state.ui.get('activeList')
-  const updatableTask = state.ui.get('updatableTask')
-  const tasks = state.tasks.get('byId')
-  const taskIds = state.tasks.get('allIds')
-  const user = state.auth.getIn(['user', 'id'])
-
-  const list = state.lists
-      .getIn(['byId', listId])
-
-  const collapsed = state.ui.get('collapsedMenu')
+  const list = state.lists.getIn(['byId', listId])
 
   return {
     tasks: tasksSelectors.getTasksByList(listId, state.tasks),
     listId,
     list: list ? list.toJS() : null,
-    collapsed,
-    updatableTask,
-    user
+    collapsed: state.ui.get('collapsedMenu'),
+    updatableTask: state.ui.get('updatableTask'),
+    user: state.auth.getIn(['user', 'id'])
   }
 }
 
