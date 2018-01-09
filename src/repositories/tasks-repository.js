@@ -15,6 +15,12 @@ export const findByUser = (userId) =>
     .get()
     .then(res => res.docs.map(item => item.data()))
 
+export const findByList = (listId) =>
+  db.collection('tasks')
+    .where('listId', '==', listId)
+    .get()
+    .then(res => res.docs.map(item => item.data()))
+
 export const find = (id) =>
   db.collection('tasks')
     .doc(id)
@@ -36,5 +42,6 @@ export default {
   destroy,
   find,
   findByUser,
+  findByList,
   save
 }
