@@ -2,6 +2,7 @@ import React from 'react'
 
 import style from './style.module.css'
 import TaskList from './TaskList'
+import NoListSelected from './NoListSelected'
 import {
   Icon,
   Layout
@@ -31,7 +32,7 @@ const TasksLayout = (props) => (
 export default (props) => {
   const content = props.list
     ? <TaskList {...props} />
-    : null
+    : <NoListSelected/>
   return (
     <TasksLayout {...props}>
       { content }

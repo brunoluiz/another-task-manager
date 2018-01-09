@@ -1,0 +1,10 @@
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.box h1 {
+  color: rgba(0, 0, 0, .3)
+}
