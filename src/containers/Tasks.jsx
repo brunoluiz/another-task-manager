@@ -1,4 +1,7 @@
-import { actions as tasks } from '../modules/tasks'
+import {
+  actions as tasks,
+  selectors as tasksSelectors
+} from '../modules/tasks'
 import { actions as ui } from '../modules/ui'
 import Tasks from '../components/Tasks'
 import uuid from 'uuid/v4'
@@ -14,24 +17,10 @@ const mapStateToProps = (state) => {
   const list = state.lists
       .getIn(['byId', listId])
 
-  const sortedTasks = taskIds
-    .map(id => tasks.get(id))
-
-  const uiActiveTasks = sortedTasks
-    .reduce((acc, task) => {
-      // Filter tasks which are not on the actual list
-      if (!task || task.get('listId') !== listId) return acc
-
-      // Maybe a bottleneck will be the toJS()
-      return task.get('done')
-        ? [...acc, task.toJS()]
-        : [task.toJS(), ...acc]
-    }, [])
-
   const collapsed = state.ui.get('collapsedMenu')
 
   return {
-    tasks: uiActiveTasks,
+    tasks: tasksSelectors.getTasksByList(listId, state.tasks),
     listId,
     list: list ? list.toJS() : null,
     collapsed,
