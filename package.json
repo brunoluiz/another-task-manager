@@ -20,15 +20,17 @@
     "babel-plugin-import": "^1.6.3",
     "gh-pages": "^1.1.0",
     "node-sass": "^4.7.2",
-    "react-app-rewire-css-modules": "github:codebandits/react-app-rewire-css-modules",
+    "react-app-rewire-css-modules": "github:leandroferreira/react-app-rewire-css-modules",
     "react-app-rewired": "^1.4.0",
     "react-scripts": "^1.0.17",
     "react-scripts-cssmodules": "^1.0.171",
     "sass-loader": "^6.0.6",
+    "source-map-explorer": "^1.5.0",
     "standardjs": "^1.0.0"
   },
   "scripts": {
     "build": "react-app-rewired build",
+    "analyze": "source-map-explorer build/static/js/main.*",
     "deploy": "gh-pages -d build",
     "eject": "react-app-rewired eject",
     "lint": "./node_modules/.bin/standard",
