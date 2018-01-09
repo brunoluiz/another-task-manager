@@ -12,3 +12,9 @@ const config = {
 
 firebase.initializeApp(config)
 firebase.firestore().enablePersistence()
+
+export const db = firebase.firestore()
+
+export default {
+  db
+}

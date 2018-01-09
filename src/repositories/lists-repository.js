@@ -1,9 +1,6 @@
 import uuid from 'uuid/v4'
-import firebase from 'firebase'
-import 'firebase/firestore'
+import { db } from '../firebase'
 import tasksRepository from './tasks-repository'
-
-const db = firebase.firestore()
 
 export const destroy = async (id) => {
   const tasks = await tasksRepository.findByList(id)

@@ -1,6 +1,5 @@
 import './index.css'
 import 'normalize.css'
-import './firebase'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Router from './router'

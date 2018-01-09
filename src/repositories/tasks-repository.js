@@ -1,8 +1,5 @@
 import uuid from 'uuid/v4'
-import firebase from 'firebase'
-import 'firebase/firestore'
-
-const db = firebase.firestore()
+import { db } from '../firebase'
 
 export const destroy = (id) =>
   db.collection('tasks')
