@@ -6,6 +6,7 @@
   "dependencies": {
     "antd": "^3.0.3",
     "firebase": "^4.8.1",
+    "flow-bin": "^0.63.1",
     "immutable": "^3.8.2",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
@@ -30,6 +31,7 @@
   },
   "scripts": {
     "build": "react-app-rewired build",
+    "flow": "flow",
     "analyze": "source-map-explorer build/static/js/main.*",
     "deploy": "gh-pages -d build",
     "eject": "react-app-rewired eject",
