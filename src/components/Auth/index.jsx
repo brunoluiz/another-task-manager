@@ -1,10 +1,18 @@
+// @flow
+
 import React from 'react'
 
 import { Button, Icon } from 'antd'
 
 import style from './style.module.css'
 
-export default (props) =>
+type Props = {
+  onAuth: () => mixed
+}
+
+export default ({
+  onAuth
+} : Props) =>
   <div className={style.auth}>
     <div className={style.box}>
       <Icon type='profile' className={style.logo} />
@@ -13,7 +21,7 @@ export default (props) =>
         <li>
           <Button
             icon='google'
-            onClick={props.onAuth}
+            onClick={onAuth}
             >Login With Google</Button>
         </li>
       </ul>

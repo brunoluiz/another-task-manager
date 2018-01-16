@@ -1,5 +1,7 @@
+// @flow
+
 const namespace = 'app/ui'
-const define = (str) => `${namespace}/${str}`
+const define = (str : string) => `${namespace}/${str}`
 
 export const HIDE_MODAL = define('HIDE_MODAL')
 export const LOAD = define('LOAD')

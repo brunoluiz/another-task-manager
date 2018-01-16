@@ -1,28 +1,55 @@
+// @flow
+
 import React from 'react'
 
 import {
   ChecklistCreateModal,
   ChecklistUpdateModal
 } from '../ChecklistModal'
-import style from './style.module.css'
 import {
   Affix,
   Icon,
   Menu
 } from 'antd'
 
-export default (props) => {
-  const lists = props.lists.byId
-  const items = Object.keys(lists)
+import style from './style.module.css'
+
+type Props = {
+  active: ?string,
+  lists: Object,
+  modal: Object,
+  onCreate: () => mixed,
+  onDelete: () => mixed,
+  onEditClick: () => mixed,
+  onHideModal: () => mixed,
+  onMenuClick: () => mixed,
+  onUpdate: () => mixed,
+  user: String
+}
+
+export default ({
+  active,
+  lists,
+  modal,
+  onCreate,
+  onDelete,
+  onEditClick,
+  onHideModal,
+  onMenuClick,
+  onUpdate,
+  user
+} : Props) => {
+  const listsCollection = lists.byId
+  const items = Object.keys(listsCollection)
     .map(id =>
       <Menu.Item key={id}>
         <Icon type='bars' />
         <span className={style.textWrap}>
-          <span>{lists[id].name}</span>
+          <span>{listsCollection[id].name}</span>
         </span>
         <Affix className={style.actions}>
-          <Icon type='edit' onClick={() => props.onEditClick(id)} />
-          <Icon type='delete' onClick={() => props.onDelete(id)} />
+          <Icon type='edit' onClick={() => onEditClick(id)} />
+          <Icon type='delete' onClick={() => onDelete(id)} />
         </Affix>
       </Menu.Item>
   )
@@ -36,27 +63,27 @@ export default (props) => {
 
   const createModal = (
     <ChecklistCreateModal
-      onHide={props.onHideModal}
-      onCreate={(data) => props.onCreate(data, props.user)}
-      visible={props.modal.createList.visible}
+      onHide={onHideModal}
+      onCreate={(data) => onCreate(data, user)}
+      visible={modal.createList.visible}
     />
   )
 
   const updateModal = (
     <ChecklistUpdateModal
-      onHide={props.onHideModal}
-      onUpdate={(data) => props.onUpdate(data, props.user)}
-      visible={props.modal.updateList.visible}
-      data={lists[props.modal.updateList.id]}
+      onHide={onHideModal}
+      onUpdate={(data) => onUpdate(data, user)}
+      visible={modal.updateList.visible}
+      data={lists[modal.updateList.id]}
     />
   )
 
   return (
     <Menu
       theme='dark'
-      selectedKeys={[props.active]}
+      selectedKeys={[active]}
       mode='inline'
-      onClick={(e) => props.onMenuClick(e)}
+      onClick={(e) => onMenuClick(e)}
     >
       {items}
       {createButton}

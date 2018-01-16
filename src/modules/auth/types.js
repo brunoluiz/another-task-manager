@@ -1,5 +1,7 @@
+// @flow
+
 const namespace = 'app/auth'
-const define = (str) => `${namespace}/${str}`
+const define = (str : string) => `${namespace}/${str}`
 
 export const AUTH = define('AUTH')
 export const AUTH_SUCCESS = define('AUTH_SUCCESS')

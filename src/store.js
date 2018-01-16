@@ -1,3 +1,5 @@
+// @flow
+
 import createSagaMiddleware from 'redux-saga'
 import auth from './modules/auth'
 import lists from './modules/lists'

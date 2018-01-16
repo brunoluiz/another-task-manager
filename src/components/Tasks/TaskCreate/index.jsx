@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import {
@@ -6,11 +8,20 @@ import {
   List
 } from 'antd'
 
-export default (props) => (
+type Props = {
+  listId: String,
+  onCreate: Function,
+  user: String
+}
+
+export default ({
+  listId,
+  onCreate,
+  user
+}: Props) => (
   <List.Item>
     <Input
-      onChange={props.onChange}
-      onKeyPress={(e) => props.onCreate(e, props.listId, props.user)}
+      onKeyPress={(e) => onCreate(e, listId, user)}
       placeholder='Add a task'
       prefix={<Icon type='plus' style={{ color: 'rgba(0,0,0,.25)' }} />}
       size='large'

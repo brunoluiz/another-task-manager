@@ -1,13 +1,15 @@
+// @flow
+
 import uuid from 'uuid/v4'
 import { db } from '../firebase'
 
-export const destroy = (id) =>
+export const destroy = (id : String) =>
   db.collection('users')
     .doc(id)
     .delete()
     .catch(console.log)
 
-export const find = (id) =>
+export const find = (id : String) =>
   db.collection('users')
     .doc(id)
     .get()
@@ -17,7 +19,7 @@ export const find = (id) =>
       return null
     })
 
-export const save = (dataIn) => {
+export const save = (dataIn : Object) => {
   const data = dataIn.id
     ? Object.assign({}, dataIn)
     : Object.assign({}, dataIn, { id: uuid() })

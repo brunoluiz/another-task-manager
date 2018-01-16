@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import TaskCreate from '../TaskCreate'
@@ -6,9 +8,21 @@ import { List } from 'antd'
 
 import style from './style.module.css'
 
-export default (props) => {
-  const { tasks } = props
+type Props = {
+  tasks: Object,
+  onCreate: Function,
+  listId: String,
+  user: String,
+  props: mixed
+}
 
+export default ({
+  tasks,
+  onCreate,
+  listId,
+  user,
+  ...props
+} : Props) => {
   const items = tasks.map(task => (
     <TaskItem
       key={task.id}
@@ -20,15 +34,15 @@ export default (props) => {
   const createTask = (
     <TaskCreate
       key='create-task'
-      onCreate={props.onCreate}
-      listId={props.listId}
-      user={props.user}
+      onCreate={onCreate}
+      listId={listId}
+      user={user}
     />
   )
 
   return (
     <List
-      className={`${props.className} ${style.list}`}
+      className={style.list}
       itemLayout='horizontal'
     >
       <div style={{ minHeight: '101%' }}>

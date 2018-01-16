@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import {
@@ -5,6 +7,15 @@ import {
   Input,
   Modal
 } from 'antd'
+
+type Props = {
+  form: mixed,
+  onCancel: Function,
+  onOk: Function,
+  okText: String,
+  title: String,
+  visible: Boolean
+}
 
 export default Form.create({
   mapPropsToFields: ({ data }) => {
@@ -16,15 +27,14 @@ export default Form.create({
       })
     }
   }
-})((props) => {
-  const {
-    form,
-    onCancel,
-    onOk,
-    okText,
-    title,
-    visible
-  } = props
+})(({
+  form,
+  onCancel,
+  onOk,
+  okText,
+  title,
+  visible
+}) => {
 
   const { getFieldDecorator } = form
 

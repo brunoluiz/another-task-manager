@@ -1,3 +1,5 @@
+// @flow
+
 import App from './containers/App.jsx'
 import Auth from './containers/Auth.jsx'
 import React from 'react'

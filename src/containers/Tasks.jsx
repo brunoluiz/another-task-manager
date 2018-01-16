@@ -1,3 +1,5 @@
+// @flow
+
 import { actions as ui } from '../modules/ui'
 import Tasks from '../components/Tasks'
 import uuid from 'uuid/v4'
@@ -7,7 +9,7 @@ import {
   selectors as tasksSelectors
 } from '../modules/tasks'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state : Object) => {
   const listId = state.ui.get('activeList')
   const list = state.lists.getIn(['byId', listId])
 
@@ -21,7 +23,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = (dispatch : Function, props : Object) => ({
   onCreate: (e, listId, user) => {
     if (e.key !== 'Enter') return
 

@@ -1,14 +1,28 @@
-import ChecklistModal from './ChecklistModal'
+// @flow
+
 import React from 'react'
 
-export default class extends React.Component {
-  constructor (props) {
+import ChecklistModal from './ChecklistModal'
+import { Form } from 'antd'
+
+type Props = {
+  onCreate: () => mixed,
+  onHide: () => mixed,
+  visible: Boolean
+}
+
+export default class extends React.Component<Props> {
+  form: Form
+  handleSubmit: () => mixed
+  saveFormRef: () => mixed
+
+  constructor (props : Props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.saveFormRef = this.saveFormRef.bind(this)
   }
 
-  handleSubmit (e) {
+  handleSubmit (e : SyntheticEvent<>) {
     e.preventDefault()
 
     this.form.validateFields((err, values) => {
@@ -20,7 +34,7 @@ export default class extends React.Component {
     })
   }
 
-  saveFormRef (form) {
+  saveFormRef (form : Form) {
     this.form = form
   }
 

@@ -1,5 +1,7 @@
+// @flow
+
 const namespace = 'app/lists'
-const define = (str) => `${namespace}/${str}`
+const define = (str : string) => `${namespace}/${str}`
 
 export const CREATE = define('CREATE')
 export const DELETE = define('DELETE')

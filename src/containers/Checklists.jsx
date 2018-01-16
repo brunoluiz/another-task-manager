@@ -1,10 +1,12 @@
+// @flow
+
 import { actions as lists } from '../modules/lists'
 import { actions as ui } from '../modules/ui'
 import Checklists from '../components/Checklists'
 import uuid from 'uuid/v4'
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state : Object) => ({
   active: state.ui.get('activeList'),
   collapsed: state.ui.get('collapsedMenu'),
   lists: state.lists.toJS(),
@@ -12,7 +14,7 @@ const mapStateToProps = (state) => ({
   user: state.auth.getIn(['user', 'id'])
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch : Function) => ({
   onCreate: (data, user) => {
     dispatch(lists.doCreate({
       id: uuid(),

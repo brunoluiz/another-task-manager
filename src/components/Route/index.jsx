@@ -1,9 +1,20 @@
+// @flow
+
 import React from 'react'
 import Loading from '../Loading'
 import {
   Redirect,
   Route
 } from 'react-router-dom'
+
+type Props = {
+  component: Object,
+  isPrivate: ?Boolean,
+  isLoggedIn: Boolean,
+  isLoading: Boolean,
+  redirect: ?String,
+  rest: mixed
+}
 
 export default ({
   component: Component,
@@ -12,7 +23,7 @@ export default ({
   isLoading,
   redirect,
   ...rest
-}) =>
+}: Props) =>
   <Route
     {...rest}
     render={(props) => {
