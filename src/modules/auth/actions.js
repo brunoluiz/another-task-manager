@@ -2,5 +2,8 @@
 
 import * as types from './types'
 
-export const doAuth = (data : Object) => ({ type: types.AUTH, data })
-export const doSignout = () => ({ type: types.SIGNOUT })
+export const doAuth = (data : Object) : Object =>
+  ({ type: types.AUTH, data })
+
+export const doSignout = () : Object =>
+  ({ type: types.SIGNOUT })
