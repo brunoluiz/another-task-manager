@@ -3,13 +3,13 @@
 import uuid from 'uuid/v4'
 import { db } from '../firebase'
 
-export const destroy = (id : String) =>
+export const destroy = (id : string) =>
   db.collection('users')
     .doc(id)
     .delete()
     .catch(console.log)
 
-export const find = (id : String) =>
+export const find = (id : string) =>
   db.collection('users')
     .doc(id)
     .get()

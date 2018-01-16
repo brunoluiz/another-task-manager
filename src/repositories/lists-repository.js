@@ -4,7 +4,7 @@ import uuid from 'uuid/v4'
 import { db } from '../firebase'
 import tasksRepository from './tasks-repository'
 
-export const destroy = async (id : String) => {
+export const destroy = async (id : string) => {
   const tasks = await tasksRepository.findByList(id)
 
   const batch = db.batch()
@@ -20,13 +20,13 @@ export const destroy = async (id : String) => {
   return batch.commit()
 }
 
-export const findByUser = (userId : String) =>
+export const findByUser = (userId : string) =>
   db.collection('lists')
     .where('user', '==', userId)
     .get()
     .then(res => res.docs.map(item => item.data()))
 
-export const find = (id : String) =>
+export const find = (id : string) =>
   db.collection('lists')
     .doc(id)
     .get()

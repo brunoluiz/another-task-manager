@@ -3,24 +3,24 @@
 import uuid from 'uuid/v4'
 import { db } from '../firebase'
 
-export const destroy = (id : String) =>
+export const destroy = (id : string) =>
   db.collection('tasks')
     .doc(id)
     .delete()
 
-export const findByUser = (userId : String) =>
+export const findByUser = (userId : string) =>
   db.collection('tasks')
     .where('user', '==', userId)
     .get()
     .then(res => res.docs.map(item => item.data()))
 
-export const findByList = (listId : String) =>
+export const findByList = (listId : string) =>
   db.collection('tasks')
     .where('listId', '==', listId)
     .get()
     .then(res => res.docs.map(item => item.data()))
 
-export const find = (id : String) =>
+export const find = (id : string) =>
   db.collection('tasks')
     .doc(id)
     .get()
