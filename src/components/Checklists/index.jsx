@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import ChecklistList from './ChecklistList'
@@ -9,7 +11,7 @@ const {
   Sider
 } = Layout
 
-export default (props) => (
+export default (props : Object) => (
   <Sider
     breakpoint='xs'
     className={style.sider}

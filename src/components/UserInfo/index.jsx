@@ -7,7 +7,7 @@ import style from './style.module.css'
 
 type Props = {
   email: string,
-  onSignOut: Function
+  onSignOut: (e : SyntheticTouchEvent<>) => mixed
 }
 
 export default ({

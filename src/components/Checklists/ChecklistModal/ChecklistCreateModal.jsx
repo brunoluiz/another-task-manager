@@ -6,9 +6,9 @@ import ChecklistModal from './ChecklistModal'
 import { Form } from 'antd'
 
 type Props = {
-  onCreate: () => mixed,
+  onCreate: (values : Object) => mixed,
   onHide: () => mixed,
-  visible: Boolean
+  visible: boolean
 }
 
 export default class extends React.Component<Props> {

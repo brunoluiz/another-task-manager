@@ -18,13 +18,13 @@ type Props = {
   active: ?string,
   lists: Object,
   modal: Object,
-  onCreate: () => mixed,
-  onDelete: () => mixed,
-  onEditClick: () => mixed,
-  onHideModal: () => mixed,
-  onMenuClick: () => mixed,
-  onUpdate: () => mixed,
-  user: String
+  onCreate: (data : Object, user : string) => mixed,
+  onDelete: (id : string) => mixed,
+  onEditClick: (id : string) => mixed,
+  onHideModal: (e : SyntheticTouchEvent<>) => mixed,
+  onMenuClick: (e : SyntheticTouchEvent<>) => mixed,
+  onUpdate: (data : Object, user : string) => mixed,
+  user: string
 }
 
 export default ({

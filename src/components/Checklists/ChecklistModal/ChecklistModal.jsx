@@ -10,11 +10,11 @@ import {
 
 type Props = {
   form: mixed,
-  onCancel: Function,
-  onOk: Function,
-  okText: String,
-  title: String,
-  visible: Boolean
+  onCancel: (e : SyntheticTouchEvent<>) => mixed,
+  onOk: (e : SyntheticTouchEvent<>) => mixed,
+  okText: string,
+  title: string,
+  visible: boolean
 }
 
 export default Form.create({

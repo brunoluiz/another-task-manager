@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import style from './style.module.css'
@@ -13,7 +15,7 @@ const {
   Header
 } = Layout
 
-const TasksLayout = (props) => (
+const TasksLayout = (props : Object) => (
   <Layout>
     <Header className={style.header}>
       <Icon
@@ -29,7 +31,7 @@ const TasksLayout = (props) => (
   </Layout>
 )
 
-export default (props) => {
+export default (props : Object) => {
   const content = props.list
     ? <TaskList {...props} />
     : <NoListSelected/>

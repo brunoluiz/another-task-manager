@@ -9,9 +9,10 @@ import {
 } from 'antd'
 
 type Props = {
-  listId: String,
+  listId: string,
   onCreate: Function,
-  user: String
+  onCreate: (e : SyntheticTouchEvent<>, listId : string, user : string) => mixed,
+  user: string
 }
 
 export default ({

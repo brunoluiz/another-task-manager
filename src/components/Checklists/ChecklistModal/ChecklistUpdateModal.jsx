@@ -8,8 +8,8 @@ import { Form } from 'antd'
 type Props = {
   data: Object,
   onHide: () => mixed,
-  onUpdate: () => mixed,
-  visible: Boolean
+  onUpdate: (data : Object) => mixed,
+  visible: boolean
 }
 
 export default class extends React.Component<Props> {

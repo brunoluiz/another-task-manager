@@ -10,9 +10,9 @@ import style from './style.module.css'
 
 type Props = {
   tasks: Object,
-  onCreate: Function,
-  listId: String,
-  user: String,
+  onCreate: (e : SyntheticTouchEvent<>, listId : string, user : string) => mixed,
+  listId: string,
+  user: string,
   props: mixed
 }
 
