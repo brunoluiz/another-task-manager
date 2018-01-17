@@ -38,7 +38,7 @@ export default ({
   onMenuClick,
   onUpdate,
   user
-} : Props) => {
+} : Props) : Menu<Props>  => {
   const listsCollection = lists.byId
   const items = Object.keys(listsCollection)
     .map(id =>

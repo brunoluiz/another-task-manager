@@ -22,7 +22,7 @@ export default class extends React.Component<Props> {
     this.saveFormRef = this.saveFormRef.bind(this)
   }
 
-  handleSubmit (e : SyntheticEvent<>) {
+  handleSubmit (e : SyntheticEvent<>) : void {
     e.preventDefault()
 
     this.form.validateFields((err, values) => {
@@ -34,7 +34,7 @@ export default class extends React.Component<Props> {
     })
   }
 
-  saveFormRef (form : Form) {
+  saveFormRef (form : Form) : void {
     this.form = form
   }
 

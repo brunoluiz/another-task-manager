@@ -7,11 +7,9 @@ import UserInfo from '../../containers/UserInfo'
 import style from './style.module.css'
 import { Layout } from 'antd'
 
-const {
-  Sider
-} = Layout
+const { Sider } = Layout
 
-export default (props : Object) => (
+export default (props : Object) : Sider<Object> => (
   <Sider
     breakpoint='xs'
     className={style.sider}

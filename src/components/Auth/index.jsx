@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 
 import { Button, Icon } from 'antd'
@@ -12,7 +10,7 @@ type Props = {
 
 export default ({
   onAuth
-} : Props) =>
+} : Props) : React.Component<Props> => (
   <div className={style.auth}>
     <div className={style.box}>
       <Icon type='profile' className={style.logo} />
@@ -27,3 +25,4 @@ export default ({
       </ul>
     </div>
   </div>
+)

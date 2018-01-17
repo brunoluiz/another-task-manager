@@ -23,7 +23,7 @@ export default ({
   isLoading,
   redirect,
   ...rest
-}: Props) =>
+}: Props) : Route<Props> =>
   <Route
     {...rest}
     render={(props) => {

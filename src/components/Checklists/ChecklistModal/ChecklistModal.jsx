@@ -9,7 +9,7 @@ import {
 } from 'antd'
 
 type Props = {
-  form: mixed,
+  form: any,
   onCancel: (e : SyntheticTouchEvent<>) => mixed,
   onOk: (e : SyntheticTouchEvent<>) => mixed,
   okText: string,
@@ -34,7 +34,7 @@ export default Form.create({
   okText,
   title,
   visible
-}) => {
+} : Props) : Modal<Props> => {
 
   const { getFieldDecorator } = form
 
